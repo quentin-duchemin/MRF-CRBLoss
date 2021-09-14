@@ -1,43 +1,7 @@
-# Introduction to the MRF project
+# Presentation of the repository
 
-As a master student from the [MVA](http://math.ens-paris-saclay.fr/version-francaise/formations/master-mva/), I joined the Center for Data Science of the New York University for my internship from April 2019 to August 2019. Under the supervision of Carlos Fernandez-Granda and Jakob Assländer, I worked on the estimation of the parameters in MRF (Magnetic Resonance Fingerprinting). 
+This repository contains de *MRF-CRBLoss* package which allows to estimate biological parameters in the context of Magnetic Resonance Fingerprinting (MRF). Our main contribution lies in the introduction of a new loss function that extends the usual MSE by normalizing the contribution of each parameter by its respective Cramer Rao Bound. 
 
-I put on Github the final version of my code with a documentation available [here](https://mrf.readthedocs.io/en/latest/index.html).
+In our paper, we prove that our approach allows to improve estimation result and provides an absolute metric to quantify the performance of the network.
 
-### How the repository is organized ?
-
-Two different training strategies can be used:
-
-- using fingerprints that are computed online. In this framework, the network is trained using always new fingerprints computed using the pytorch dataloader which exploits parallelization on different CPUs. 
-
-- using fingerprints pre-computed (offline) and stocked in different files.
-
-### How to launch your own experiments ?
-
-Interactive notebook interfaces have been built to allow the user to easily define the settings desired for the training. These interfaces can be launched opening the jupyter files located in the folder **notebooks**.
-
-
-```python
-git clone https://github.com/quentin-duchemin/MRF.git
-cd MRF
-sudo pip3 install --upgrade --force-reinstall virtualenv
-# create and active the virtualenv
-virtualenv pyenv
-. pyenv/bin/activate
-# install the required python packages in the virtualenv
-pip install -r requirements_MRF.txt
-# launch the interface online_training_results.ipynb (or offline_training_results.ipynb) and save the settings for your training
-cd notebooks
-jupyter notebook
-# once done, press Ctr C to exit jupyter
-# example to launch the training : make sure to replace name_setting_file by the name you gave to the settings file 
-python main_online.py --save_name name_setting_file
-```
-
-> For further help, you can read the [documentation](https://mrf.readthedocs.io/en/latest/runcode.html).
-
-### How to easily study the results of your training ?
-
-Interactive notebook interfaces have been built to allow the user to easily study the results of the training. These interfaces can be launched opening the files named **offline_visualize_results.ipynb** or **online_visualize_results.ipynb** in the folder **notebooks** using jupyter. 
-
-> You can find a complete description of these notebooks [here](https://mrf.readthedocs.io/en/latest/visualize.html).
+In the documentation of this package, we provide all ingredients allowing to reproduce the experiments of our paper. As a by product, we descirbe in details our procedure allowing reseachers to fork our work to use or extend our code for future applications.
