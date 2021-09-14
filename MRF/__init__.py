@@ -6,7 +6,7 @@ from MRF import Offline
 
 from MRF import models
 
-# from MRF import simulate_signal
+from MRF import simulate_signal
 
 
 from .BaseData_class import BaseData_class

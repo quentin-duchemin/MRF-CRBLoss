@@ -15,7 +15,7 @@ from torch.utils.data import Dataset
 from torch import optim
 import scipy.integrate
 import copy
-#from .simulate_signal import simulation
+from .simulate_signal import simulation
 
 def load_data_6params():
   my_path = os.path.abspath(os.path.dirname(__file__))
