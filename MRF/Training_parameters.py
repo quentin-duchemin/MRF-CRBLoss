@@ -7,7 +7,7 @@ params_min_values = np.array([0.001, 0.01, 0.01,  10,  1e-3])
 params_max_values = np.array([0.5,   5,    3,    100, 1e-1])
 
 nametoparam = {'The three parameters':[0,1,2], 'The3_b1':[0,1,2,7], 'The3_b0_b1':[0,1,2,6,7], 'b0':[6],'b1':[7],'m0s':[0],'T1':[1],'T2':[2],'T1 and T2':[1,2], 'R':[3], 'T2s':[4], 'The four parameters':[0,1,2,3], 'The five parameters':[0,1,2,3,4]}
-paramtoname =  {0:'m0s', 1:'T1', 2:'T2', 3:'R', 4:'T2s'}
+paramtoname =  {0:'m0s', 1:'T1', 2:'T2', 3:'R', 4:'T2s', 5:'M0', 6:'b0', 7:'b1'}
 
 class Training_parameters():
 	'''Define the most important parameters to train the network.

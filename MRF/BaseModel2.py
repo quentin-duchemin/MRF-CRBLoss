@@ -46,8 +46,8 @@ class BaseModel(Module):
 		proj = proj / torch.norm(proj, dim=1).unsqueeze(1).repeat(1, proj.shape[1])
 		return proj
 
-	def forward(self, signals,b1map):
+	def forward(self, signals, b1map):
 		"""
 		Define the architecture of the network.
 		"""
-		raise NotImplementedError("This method forward has to be implemented in the class inheriting from BaseModel.")
+		raise NotImplementedError("This method forward has to be implemented in the class inheriting from BaseModel2.")
