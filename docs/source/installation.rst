@@ -4,7 +4,7 @@ Installation
 Prerequisites
 ~~~~~~~~~~~~~~
 
-scvi-tools can be installed via conda or pip. If you don't know which to choose, we recommend conda for beginner users.
+MRF-CRBLoss is a Python package allowing to estimate biophysical parameters from MRF scans. In the following, we describe the steps to follow to get a correct environment to use our package.
 
 conda prerequisites
 ###################
@@ -19,8 +19,8 @@ conda prerequisites
 
     source activate mrf-env
 
-pip prerequisites
-#################
+python prerequisites
+####################
 
 1. Install Python_, we prefer the `pyenv <https://github.com/pyenv/pyenv/>`_ version management system, along with `pyenv-virtualenv <https://github.com/pyenv/pyenv-virtualenv/>`_.
 
@@ -31,31 +31,14 @@ pip prerequisites
 .. _PyTorch: http://pytorch.org
 
 
-Conda
-~~~~~
+Downloading the package
+~~~~~~~~~~~~~~~~~~~~~~~
 
-::
+1. clone the repository::
+	
+	git clone https://github.com/quentin-duchemin/MRF-CRBLoss.git
 
-    conda install mrf-crbloss -c bioconda -c conda-forge
 
-Pip
-~~~
+2. install the required python packages in the virtualenv::
 
-::
-
-    pip install mrf-crbloss
-
-Through pip with packages to run notebooks. This installs scanpy, etc.::
-
-    pip install mrf-crbloss[tutorials]
-
-Nightly version - clone this repo and run::
-
-    pip install .
-
-Development
-~~~~~~~~~~~
-
-For development - clone this repo and run::
-
-    pip install -e ".[dev,docs]"
+	pip install -r requirements_MRF.txt

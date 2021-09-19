@@ -110,6 +110,12 @@ html_logo = "_static/logo.png"
 nbsphinx_thumbnails = {
     "tutorials/notebooks/slice-paper": "_static/tutorials/slice-paper.png",
     "tutorials/notebooks/testing": "_static/tutorials/testing.png",
+    "tutorials/notebooks/visualize": "_static/tutorials/training-analysis.png",
     "tutorials/notebooks/training": "_static/tutorials/training.png",
+    "tutorials/notebooks/settings": "_static/tutorials/settings.png",
+    "tutorials/notebooks/quickstart": "_static/tutorials/quickstart1.png",
     "tutorials/notebooks/data-generation": "_static/tutorials/data-generation.png",
 }
+
+
+nbsphinx_allow_errors = True
