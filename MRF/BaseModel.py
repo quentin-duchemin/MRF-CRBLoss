@@ -17,7 +17,7 @@ class BaseModel(Module):
 		self.projection           = projection
 		self.nb_params 			  = nb_params
 		self.joint                = joint
-		self.ghost                = ghost 
+		self.ghost                = ghost
 		
 	def assert_projection_defined(self):
 		"""

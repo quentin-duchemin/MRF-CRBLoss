@@ -8,16 +8,20 @@ params_max_values = np.array([0.5,   5,    3,    100, 1e-1])
 
 nametoparam = {'The three parameters':[0,1,2], 'The3_b1':[0,1,2,7], 'The3_b0_b1':[0,1,2,6,7], 'b0':[6],'b1':[7],'m0s':[0],'T1':[1],'T2':[2],'T1 and T2':[1,2], 'R':[3], 'T2s':[4], 'The four parameters':[0,1,2,3], 'The five parameters':[0,1,2,3,4]}
 paramtoname =  {0:'m0s', 1:'T1', 2:'T2', 3:'R', 4:'T2s', 5:'M0', 6:'b0', 7:'b1'}
+paramtolatexname =  {0:'$m_0^s$', 1:'$T_1^f$', 2:'$T_2^f$', 3:'$R$', 4:'$T_2^s$', 5:'$M_0$', 6:'$B_0$', 7:'$B_1$'}
+
 
 class Training_parameters():
-	'''Define the most important parameters to train the network.
 	'''
-	def __init__(self, batch_size, nb_iterations, nb_epochs, params, normalization):
+	Define the hyperparameters to train the neural network.
+	'''
+	def __init__(self, batch_size, nb_iterations, nb_epochs, params, normalization, isdatacomplex):
 		self.batch_size    = batch_size
 		self.nb_iterations = nb_iterations
 		self.nb_epochs     = nb_epochs
 		self.params        = params
 		self.normalization = normalization
+		self.complex       = isdatacomplex
 		
 	def dico_save(self):
 		return self.__dict__	
@@ -53,11 +57,9 @@ class Loss(Enumerate):
 		else:
 			return False
 	
-	
-	
 class Normalization(Enumerate):
 	'''
-	Define the way you want to normalize (or not) the signal.
+	Define the way you want to normalize (or not) the input signal.
 	'''
 	#: Option to avoid normalization.
 	WHITHOUT   = "Without"
@@ -68,7 +70,7 @@ class Normalization(Enumerate):
 	
 class Optimizer(Enumerate):
 	'''
-	Select the optmizer used for the training.
+	Select the optimizer used for the training.
 	'''
 	#: Option to use a stochastic gradient descent to perform the backpropagation with a momentum of 0.9.
 	SGD = 'SGD'
@@ -97,7 +99,7 @@ class Initialization(Enumerate):
 	
 class Sampling(Enumerate):
 	'''
-	Define the way you want to sample the parameters. It is related with the `sample` method of the classes `Data_class` of the Online (and Offline) module.
+	Define the way you want to sample the parameters. It is related with the `sample` method of the class `Data_class`.
 	'''
 	#: The log uniform sampling is used to sample T1, T2 and T2f. The other parameters are sampled using a uniform sampling. 
 	LOG     = "Log"
@@ -107,16 +109,3 @@ class Sampling(Enumerate):
 	Uniform = "Uniform"
 	#: All the parameters are drawn using a gaussian sampling with a particular mean and vairance with a constraint and their minimum value.
 	GAUSSIAN = "Gaussian"
-	
-class T2wrtT1(Enumerate):
-	'''
-	Option that can be useful if you want to specify a particular relationship between T1 and T2 inside a given sampling strategy.
-	'''
-	#: T1 and T2 are sampled independently following the sampling startegy given by the attribute `sampling`.
-	NOCONSTRAINT = 'no_constraint'
-	#: You sample T2 according to sampling strategy given by the attribute `sampling`, but considering that the maximum value of T2 will be the value of T1.
-	BELOW        = 'below'
-	#: You sample T2 according to sampling strategy given by the attribute `sampling`, but considering that T2 is between 5% of T1 and T1.
-	BELOWPERCENT = 'below_percent'
-	
-	

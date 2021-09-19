@@ -29,28 +29,12 @@ class BaseNetwork():
 		dic.update({'name_model': self.name_model, 'loss': self.loss})
 		dic.update(self.data_class.dico_save())
 		return dic
-		
-		
-	# def base_loss_function(self, outputs, params, para, size, CRB=None):
-	# 	"""
-	# 	Compute the loss function. 'outputs' is the output given by of the neural network and 'params' is the ground truth.
-	# 	"""
-	# 	if self.loss[para] == 'MSE-CRB' and not CRB is None :
-	# 		print('para:'+str(self.loss[para])+' 1')
-	# 		return ( (outputs-params).pow(2) / CRB ).sum() / size
-	# 	elif CRB is None:
-	# 		print('para:'+str(self.loss[para])+' 2')
-	# 		return ((outputs - params).pow(2)).sum() / size
-	# 	else:
-	# 		print('para:'+str(self.loss[para])+' 3')
-	# 		return (outputs-self.transform_inv(params, para)).pow(2).sum() / size
 
 	def base_loss_function(self, outputs, params, para, size, CRB=None):
 		"""
 		Compute the loss function. 'outputs' is the output given by of the neural network and 'params' is the ground truth.
 		"""
 		if self.loss[para] == 'MSE-CRB':
-			#print('para:' + str(self.loss[para]) + ' :MSE-CRB')
 			return torch.div((outputs.float() - params.float()).pow(2), CRB.float()).sum() / size
 		elif self.loss[para] == 'MSE-Rela':  # MSE/(param+0.05)
 			return torch.div((outputs.float() - params.float()).pow(2), params.float() + 0.05).sum() / size
@@ -61,7 +45,6 @@ class BaseNetwork():
 			#return torch.abs((outputs.float() - params.float()), params.float() + 0.05).sum() / size
 			return torch.div((outputs.float() - params.float()).abs(), params.float()).sum() / size
 		else:
-			#print('para:' + str(self.loss[para]) + ':non MSE-CRB')
 			w = outputs.clone()
 			w = w.detach()
 			w = w.cpu()
@@ -74,7 +57,6 @@ class BaseNetwork():
 		"""
 		Compute the loss function. 'outputs' is the output given by of the neural network and 'params' is the ground truth. 
 		"""
-
 		if len(self.trparas.params)==1:
 			para = self.trparas.params[0]
 			CRB = CRBs[:,0].reshape(-1) if self.data_class.CRBrequired else None
@@ -116,7 +98,6 @@ class BaseNetwork():
 			for ind, para in enumerate(self.trparas.params):
 				error[ind] = ( torch.abs( self.transform(estimations[:,ind], para)-parameters[:,para])  ).pow(2).sum(dim=0) / size
 			return error 
-
 
 	def compute_absolute_errors_over_CRBs(self, estimations, parameters, size, CRBs):
 		"""
@@ -176,7 +157,6 @@ class BaseNetwork():
 			std = np.std(output, axis=0)
 		return std, mean
 	  
-
 	def eval_net(self, network, signals):
 		"""
 		Return the estimated parameters using the network 'netw' on the input batch of fingerprints 'signals'.

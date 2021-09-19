@@ -42,8 +42,6 @@ class BaseData_class(Dataset):
 		self.t           = TR * np.array([i for i in range(666)])  
 		self.CRBrequired = CRBrequired
  
-				
-				
 		# parasCRB select the relevant variable to compute the Cramer Rao Bound in the method 'compute_CRBs'.
 		if self.maxPD > self.minPD:
 			self.parasCRB = [0,1,2,3,4,5]
@@ -86,96 +84,42 @@ class BaseData_class(Dataset):
 		"""
 		vec = copy.deepcopy(vector)
 		vec = np.squeeze(vec)
-		if vec.ndim > 1:
-			if PD is None:
-				PD = np.random.uniform(self.minPD,self.maxPD,vec.shape[0])
-			vec *= np.tile(PD.reshape(-1,1),(1,vec.shape[1]))
-		else:
-			if PD is None:
-				PD = np.random.uniform(self.minPD,self.maxPD)
-			vec *= PD 
-		return vec, PD
-
-
-	def proton_density_scaling_B0(self, vector, PD=None):
-		"""
-		Rescale the fingerprints give nas an input by proton densities.
-		"""
-		vec = copy.deepcopy(vector)
-		vec = np.squeeze(vec)
-		if vec.ndim > 1:
-			if PD is None:
-				PD = np.random.uniform(self.minPD, self.maxPD, vec.shape[0])
-			vec *= np.tile(PD.reshape((-1, 1,1)), (1, vec.shape[1], vec.shape[2]))
-		else:
-			if PD is None:
-				PD = np.random.uniform(self.minPD, self.maxPD)
-			vec *= PD
-		return vec, PD
-
-
-	# def proton_density_scaling_B0_complex(self, vector, PD=None):
-	# 	"""
-	# 	Rescale the fingerprints give nas an input by proton densities.
-	# 	"""
-	# 	vec = copy.deepcopy(vector)
-	# 	vec = np.squeeze(vec)  # (b, timepoints, 2)
-	# 	if vec.ndim > 1:
-	# 		PD_real = np.random.uniform(self.minPD, self.maxPD, vec.shape[0])
-	# 		PD_imag = np.random.uniform(self.minPD, self.maxPD, vec.shape[0])
-	# 		PD = np.stack([PD_real,PD_imag],1) # (b,2)
-	#
-	#
-	# 		PD_real = np.tile(PD_real.reshape((-1, 1)), (1, vec.shape[1]))
-	#
-	# 		PD_imag = np.tile(PD_imag.reshape((-1, 1)), (1, vec.shape[1]))
-	#
-	# 		vec_real = vec[:,:,0] * PD_real - vec[:,:,1]*PD_imag
-	# 		vec_imag = vec[:, :, 1] * PD_real + vec[:, :, 0] * PD_imag
-	# 		vec = np.stack([vec_real, vec_imag], axis=2)   # (b, timepoints, 2)
-	#
-	#
-	#
-	# 		# vec *= np.tile(PD.reshape((-1, 1,1)), (1, vec.shape[1], vec.shape[2]))
-	# 	else:
-	# 		if PD is None:
-	# 			PD = np.random.uniform(self.minPD, self.maxPD)
-	# 		vec *= PD
-	# 	return vec, PD
-
-	def proton_density_scaling_B0_complex(self, vector, PD=None):
-		"""
-		Rescale the fingerprints give nas an input by proton densities.
-		"""
-		vec = copy.deepcopy(vector)
-		vec = np.squeeze(vec)  # (b, timepoints, 2)
-		if vec.ndim > 1:
-			# PD_real = np.random.uniform(self.minPD, self.maxPD, vec.shape[0])
-			# PD_imag = np.random.uniform(self.minPD, self.maxPD, vec.shape[0])
-			# PD = np.stack([PD_real,PD_imag],1) # (b,2)
-			PD =  (np.random.uniform(0,1,vec.shape[0]) * 0.9 + 0.1) * np.exp(1j * 2 * np.pi * np.random.uniform(0,1,vec.shape[0]))
-			PD_real = PD.real
-			PD_imag = PD.imag
-			PD = np.stack([PD_real,PD_imag],1) # (b,2)
-			PD_real = np.tile(PD_real.reshape((-1, 1)), (1, vec.shape[1]))
-			PD_imag = np.tile(PD_imag.reshape((-1, 1)), (1, vec.shape[1]))
-
-			if len(vec.shape)==3:
-				vec_real = vec[:,:,0] * PD_real - vec[:,:,1]*PD_imag
-				vec_imag = vec[:, :, 1] * PD_real + vec[:, :, 0] * PD_imag
-				vec = np.stack([vec_real, vec_imag], axis=2)   # (b, timepoints, 2)
+		if self.trparas.complex:
+			if vec.ndim > 1:
+				PD =  (np.random.uniform(0,1,vec.shape[0]) * 0.9 + 0.1) * np.exp(1j * 2 * np.pi * np.random.uniform(0,1,vec.shape[0]))
+				PD_real = PD.real
+				PD_imag = PD.imag
+				PD = np.stack([PD_real,PD_imag],1) # (b,2)
+				PD_real = np.tile(PD_real.reshape((-1, 1)), (1, vec.shape[1]))
+				PD_imag = np.tile(PD_imag.reshape((-1, 1)), (1, vec.shape[1]))
+				PD = PD.reshape(-1, 2)
+				PD_norm = PD[:, 0] ** 2 + PD[:, 1] ** 2
+				PD_norm = PD_norm.reshape(-1, 1)
+				if len(vec.shape)==3:
+					vec_real = vec[:,:,0] * PD_real - vec[:,:,1]*PD_imag
+					vec_imag = vec[:, :, 1] * PD_real + vec[:, :, 0] * PD_imag
+					vec = np.stack([vec_real, vec_imag], axis=2)   # (b, timepoints, 2)
+				else:
+					vec_real = vec * PD_real
+					vec_imag = vec * PD_imag
+					vec = np.stack([vec_real, vec_imag], axis=2)   # (b, timepoints, 2)
+				return vec, PD_norm
 			else:
-				vec_real = vec * PD_real
-				vec_imag = vec * PD_imag
-				vec = np.stack([vec_real, vec_imag], axis=2)   # (b, timepoints, 2)
+				if PD is None:
+					PD = np.random.uniform(self.minPD, self.maxPD)
+				vec *= PD
+				return vec, PD
 
-			# vec *= np.tile(PD.reshape((-1, 1,1)), (1, vec.shape[1], vec.shape[2]))
 		else:
-			if PD is None:
-				PD = np.random.uniform(self.minPD, self.maxPD)
-			vec *= PD
-		return vec, PD
-
+			if vec.ndim > 1:
+				if PD is None:
+					PD = np.random.uniform(self.minPD,self.maxPD,vec.shape[0])
+				vec *= np.tile(PD.reshape(-1,1),(1,vec.shape[1]))
+			else:
+				if PD is None:
+					PD = np.random.uniform(self.minPD,self.maxPD)
+				vec *= PD 
+			return vec, PD
 		
 	def add_noise(self,fing):
 		"""
@@ -205,40 +149,35 @@ class BaseData_class(Dataset):
 		If a proton density different from 1 is used, the scaling of the fingerprint
 		is also done here before adding the noise realization. 
 		"""
-		n,l = fingerprints.shape
-		np.random.seed()
-		if self.noise_type == 'SNR':
-			noise = np.random.normal(0, 1, (n,l))
-			signal_Power = np.linalg.norm(fingerprints, axis=1)
-			noise_Power = np.linalg.norm(noise,axis=1)
-			cst = signal_Power / (noise_Power * self.noise_level)
-			noise = noise * np.tile(cst.reshape(-1,1),(1,l))
-		elif self.noise_type == 'Standard':
-			noise = np.random.normal(0, self.noise_level, (n,l))
-		fingerprints += noise
-		if self.trparas.normalization == 'Noisy_input':
-			return fingerprints / np.tile(np.linalg.norm(fingerprints,axis=1).reshape(-1,1), (1,l))
-		else:
+		if self.trparas.complex:
+			n,l,r = fingerprints.shape
+			np.random.seed()
+
+			# noise_level = 0.002
+			noise_level = self.noise_level
+			# add noise to real and imag part seperately with different noise level
+			noise_real = np.random.normal(0, noise_level, (n, l))
+			noise_imag = np.random.normal(0, noise_level, (n, l))
+			noise = np.stack([noise_real,noise_imag],axis=2)  # n,l,r  4000,666,2
+			fingerprints += noise
 			return fingerprints
 
-	def add_noise_batch_B0(self,fingerprints):
-		"""
-		Add noise to a given batch of fingerprints and perform normalization if asked.
-		If a proton density different from 1 is used, the scaling of the fingerprint
-		is also done here before adding the noise realization.
-		"""
-		n,l,r = fingerprints.shape
-		np.random.seed()
-
-		# noise_level = 0.002
-		noise_level = self.noise_level
-		# add noise to real and imag part seperately with different noise level
-		noise_real = np.random.normal(0, noise_level, (n, l))
-		noise_imag = np.random.normal(0, noise_level, (n, l))
-		noise = np.stack([noise_real,noise_imag],axis=2)  # n,l,r  4000,666,2
-		fingerprints += noise
-		return fingerprints
-
+		else:	
+			n,l = fingerprints.shape
+			np.random.seed()
+			if self.noise_type == 'SNR':
+				noise = np.random.normal(0, 1, (n,l))
+				signal_Power = np.linalg.norm(fingerprints, axis=1)
+				noise_Power = np.linalg.norm(noise,axis=1)
+				cst = signal_Power / (noise_Power * self.noise_level)
+				noise = noise * np.tile(cst.reshape(-1,1),(1,l))
+			elif self.noise_type == 'Standard':
+				noise = np.random.normal(0, self.noise_level, (n,l))
+			fingerprints += noise
+			if self.trparas.normalization == 'Noisy_input':
+				return fingerprints / np.tile(np.linalg.norm(fingerprints,axis=1).reshape(-1,1), (1,l))
+			else:
+				return fingerprints
 
 
 	def nlls(self, fing, bounds, path, PD=1, nbnoise=5, save_name='-1'):

@@ -18,7 +18,6 @@ class Network(BaseNetwork, Performances):
     Class defining the whole neural network for training.
     The train method will use offline computed fingerprints.
     """
-
     def __init__(self, name_model, loss, training_parameters, save_name, data_class, validation_settings,
                  projection=None):
         """ New Network."""
@@ -37,10 +36,8 @@ class Network(BaseNetwork, Performances):
 
     def adjust_learning_rate(self, ori_lr, projection_lr_times, optimizer, epoch):
         """Sets the learning rate to the initial LR decayed by 2 every 30 epochs"""
-        #lr = max(ori_lr * (0.3 ** (epoch // 3500)), 0.00001)
         lr = max(ori_lr * (0.5 ** (epoch // 40)), 0.00001)
         optimizer.param_groups[0]['lr'] = lr
-        #optimizer.param_groups[1]['lr'] = lr * projection_lr_times
 
 
     def train(self, lr=0.001, nameoptimizer='Adam',projection_lr_times=1):
@@ -68,7 +65,7 @@ class Network(BaseNetwork, Performances):
         elif nameoptimizer == 'Adam':
             optimizer = optim.Adam(params, lr=lr)
 
-        self.init_validation_B0_complex()
+        self.init_validation(self.trparas.complex)
 
         self.losses_batch = []
         self.losses_train=[]
@@ -86,14 +83,11 @@ class Network(BaseNetwork, Performances):
             for i in range(self.num_files_validation+1, self.data_class.nb_files + 1):
                 iter = iter +1
                 inputs_file, params_file, CRBs_file = self.data_class.load_data(i)
-                inputs_file, PD = self.data_class.proton_density_scaling_B0_complex(inputs_file)
-                inputs_file = self.data_class.add_noise_batch_B0(inputs_file)
-                PD = PD.reshape(-1, 2) # (b,2)
-                PD_norm = PD[:,0]**2 + PD[:,1]**2
-                PD_norm = PD_norm.reshape(-1,1)
+                inputs_file, PD_norm = self.data_class.proton_density_scaling(inputs_file)
+                inputs_file = self.data_class.add_noise_batch(inputs_file)
                 CRBs = None
                 if self.data_class.CRBrequired:
-                    CRBs_file[:, :3] /= np.tile(PD_norm, (1, 3))
+                    CRBs_file[:, :len(self.trparas.params)] /= np.tile(PD_norm, (1, len(self.trparas.params)))
                     CRBs_file *= self.data_class.noise_level ** 2
                 ndata = inputs_file.shape[0]
                 k = 0
@@ -146,91 +140,39 @@ class Network(BaseNetwork, Performances):
                     grad += total_norm / self.trparas.nb_iterations
                     k += 1
 
-                    # if self.validation:
-                    #     net.eval()
-                    #     self.dico_validation =  inputs
-                    #     if self.data_class.CRBrequired:
-                    #         self.CRBs_validation =  torch.tensor(CRBs, dtype=torch.float,device='cpu')
-                    #     self.params_validation = torch.tensor(params, dtype=torch.float, device='cpu')
-                    #     self.validation_size = self.trparas.batch_size
-                    #     self.small_validation_size = 512
-                    #     with torch.no_grad():
-                    #         if self.projection is not None:
-                    #             estimations_validation_graph = net(self.projection.project(self.dico_validation))
-                    #         else:
-                    #             estimations_validation_graph = net(self.dico_validation)
-                    #         estimations_validation = estimations_validation_graph.cpu().detach()
-                    #         #self.validation_step(estimations_validation)
-                    #
-                    #         ### validation
-                    #         val_loss = self.loss_function(estimations_validation, self.params_validation,
-                    #                                       self.validation_size * len(self.trparas.params),
-                    #                                       CRBs=self.CRBs_validation).cpu().detach().numpy()
-                    #         val_loss_epoch += val_loss / self.trparas.nb_iterations
-                    #
-                    #         self.validation_relative_errors.append((self.compute_relative_errors(estimations_validation,
-                    #                                                                              self.params_validation,
-                    #                                                                              self.validation_size * len(self.trparas.params))).cpu().detach().numpy())
-                    #         CRBs_small = self.CRBs_validation[:self.small_validation_size:, :] if self.data_class.CRBrequired else None
-                    #         self.losses_small_validation.append((self.loss_function(
-                    #             estimations_validation[:self.small_validation_size:,:],
-                    #             self.params_validation[:self.small_validation_size:,:],
-                    #             self.small_validation_size * len(self.trparas.params), CRBs=CRBs_small)).cpu().detach().numpy())
-                    #         self.small_validation_relative_errors.append((self.compute_relative_errors(
-                    #             estimations_validation[:self.small_validation_size],
-                    #             self.params_validation[:self.small_validation_size],
-                    #             self.small_validation_size)).cpu().detach().numpy())
-                    #         self.validation_absolute_errors.append((self.compute_absolute_errors(estimations_validation,
-                    #                                                                              self.params_validation,
-                    #                                                                              self.validation_size * len(self.trparas.params))).cpu().detach().numpy())
-                    #         if self.data_class.CRBrequired:
-                    #             self.validation_absolute_errors_over_CRBs.append((self.compute_absolute_errors_over_CRBs(
-                    #                 estimations_validation,  self.params_validation, self.validation_size * len(self.trparas.params),
-                    #                 self.CRBs_validation)).cpu().detach().numpy())
-                    #         #print('EPOCH', loss_epoch, 'val:',val_loss,' time ', time.time() - t0)
-                    #         ###
-            if 1:
-                net.eval()
-                loss_epoch_separate = 0.0
-                with torch.no_grad():
-                    number = 0
-                    for i in range(self.num_files_validation + 1, self.data_class.nb_files + 1):
-                        number = number+1
-                        inputs_file, params_file, CRBs_file = self.data_class.load_data(i)
-                        inputs_file, PD = self.data_class.proton_density_scaling_B0_complex(inputs_file)
-                        inputs_file = self.data_class.add_noise_batch_B0(inputs_file)
-                        PD = PD.reshape(-1, 2)  # (b,2)
-                        PD_norm = PD[:, 0] ** 2 + PD[:, 1] ** 2
-                        PD_norm = PD_norm.reshape(-1, 1)
-                        CRBs = None
-                        if self.data_class.CRBrequired:
-                            CRBs_file[:, :3] /= np.tile(PD_norm, (1, 3))
-                            CRBs_file *= self.data_class.noise_level ** 2
-                        ndata = inputs_file.shape[0]
-                        k = 0
+            # We evaluate the loss on the current trained network
+            net.eval()
+            loss_epoch_separate = 0.0
+            with torch.no_grad():
+                number = 0
+                for i in range(self.num_files_validation + 1, self.data_class.nb_files + 1):
+                    number = number+1
+                    inputs_file, params_file, CRBs_file = self.data_class.load_data(i)
+                    inputs_file, PD_norm = self.data_class.proton_density_scaling(inputs_file)
+                    inputs_file = self.data_class.add_noise_batch(inputs_file)
+                    CRBs = None
+                    if self.data_class.CRBrequired:
+                        CRBs_file[:, :len(self.trparas.params)] /= np.tile(PD_norm, (1, len(self.trparas.params)))
+                        CRBs_file *= self.data_class.noise_level ** 2
+                    ndata = inputs_file.shape[0]
+                    k = 0
 
-                        inputs = torch.tensor(inputs_file,dtype=dtype)
-                        params = torch.tensor(params_file,dtype=dtype)
-                        inputs = inputs.to(device=self.device)
-                        if self.projection is not None:  # first layer projection
-                            inputs = self.projection.project(inputs)
-                        params = params.to(device=self.device)
-                        outputs = net(inputs)
-                        if self.data_class.CRBrequired:
-                            CRBs = torch.tensor(CRBs_file[:,self.trparas.params], dtype=dtype)
-                            CRBs = CRBs.to(device=self.device)
+                    inputs = torch.tensor(inputs_file,dtype=dtype)
+                    params = torch.tensor(params_file,dtype=dtype)
+                    inputs = inputs.to(device=self.device)
+                    if self.projection is not None:  # first layer projection
+                        inputs = self.projection.project(inputs)
+                    params = params.to(device=self.device)
+                    outputs = net(inputs)
+                    if self.data_class.CRBrequired:
+                        CRBs = torch.tensor(CRBs_file[:,self.trparas.params], dtype=dtype)
+                        CRBs = CRBs.to(device=self.device)
 
-                        loss = self.loss_function(outputs, params, self.trparas.batch_size * len(self.trparas.params),
-                                                  CRBs=CRBs)
+                    loss = self.loss_function(outputs, params, self.trparas.batch_size * len(self.trparas.params),
+                                              CRBs=CRBs)
 
-                        loss_epoch_separate += loss.detach().item()
+                    loss_epoch_separate += loss.detach().item()
             loss_epoch_separate = loss_epoch_separate / (number - 1)
-            # if 1:
-            #     net.eval()
-            #     with torch.no_grad():
-            #         outputs = net(inputs)
-            #         loss_epoch = self.loss_function(outputs, params, self.trparas.batch_size * len(self.trparas.params),
-            #                                         CRBs=CRBs)
 
             if self.validation:
                 net.eval()
@@ -244,7 +186,6 @@ class Network(BaseNetwork, Performances):
 
             print('EPOCH', loss_epoch_separate, 'validation', self.losses_validation[-1], 'time ', time.time() - t0)
 
-            # self.losses_validation.append(val_loss_epoch)
             self.losses.append(loss_epoch_separate)
             self.losses_train.append(loss_epoch)
             print('self.losses_train',self.losses_train[-1])
@@ -254,10 +195,8 @@ class Network(BaseNetwork, Performances):
             if self.data_class.CRBrequired:
                 self.training_absolute_errors_over_CRBs.append(absolute_error_over_CRBs)
             self.gradients.append(grad)
-            # print('EPOCH', loss_epoch, ' losses_validation ', val_loss_epoch)
 
             # Saving the results of the training
-
             dic = {
                 'NN': net.state_dict(),
                 'learning_rate':  optimizer.param_groups[0]['lr'],
