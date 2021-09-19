@@ -60,6 +60,7 @@ MOCK_MODULES = [
     'scipy.io',
     'data',
     'torch.nn.functional',
+    'nbsphinx',
 ]
 sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
