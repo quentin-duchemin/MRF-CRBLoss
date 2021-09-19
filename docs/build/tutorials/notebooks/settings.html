@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saving a settings file &#8212; MRF-CRBLoss</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/typehints.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/override.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/sphinx_gallery.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Training" href="training.html" />
+    <link rel="prev" title="Data Generation" href="data-generation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../presentation.html">
+  Presentation of the project
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../installation.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../documentation/index.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../developer/index.html">
+  Developer
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../team.html">
+  Team
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../references.html">
+  References
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../documentation/index.html">
+   Documentation
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   Tutorials
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="quickstart.html">
+     How to run the code ?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data-generation.html">
+     Data Generation
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Saving a settings file
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="training.html">
+     Training
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="visualize.html">
+     Visualize the results
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="testing.html">
+     Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="slice-paper.html">
+     Estimation of parameters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../developer/index.html">
+   Developer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../references.html">
+   References
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#General-parameters-for-training">
+   General parameters for training
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="Saving-a-settings-file">
+<h1>Saving a settings file<a class="headerlink" href="#Saving-a-settings-file" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>In order to launch a training, you need to save the setting file using the interactive tools contained in the folder <code class="docutils literal notranslate"><span class="pre">notebooks</span></code>: <code class="docutils literal notranslate"><span class="pre">offline_settings_training.ipynb</span></code>. In this page, we present the different parameters that you will be asked to define. This description will also allow to you to completely understand how flexible is the model implemented (i.e. what you can do using directly this project and what you can’t).</p>
+</div></blockquote>
+<p>The following screen shot presents an example of the interactive tool to define the settings for a training.</p>
+<p><img alt="Screen shot of the beginning of the interacive tool for the online framework." src="../../_images/online-settings.png" /></p>
+<div class="section" id="General-parameters-for-training">
+<h2>General parameters for training<a class="headerlink" href="#General-parameters-for-training" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name_model</span></code> <strong>String</strong> Name of the architecture of the network. The name is chosen among the architecture defined in the package <a class="reference external" href="https://mrf.readthedocs.io/en/latest/autodocs/MRF.models.html">MRF.models</a>.</p></li>
+</ul>
+<p>If the chosen model starts by a projection :</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">normalization</span></code> <strong>String</strong> Type of normalization of the data. The possible types of normalization that can be used are defined in the class <code class="docutils literal notranslate"><span class="pre">Normalization</span></code> of the module <a class="reference external" href="https://mrf.readthedocs.io/en/latest/autodocs/MRF.html#module-MRF.Training_parameters">Training_parameters</a>.</p></li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">initilization</span></code></div>
+<div class="line"><strong>String</strong></div>
+<div class="line">Type of initilization for the weights of the first linear layer which should perform the projection. The possible types of initialization that can be used are defined in the class <code class="docutils literal notranslate"><span class="pre">Initialization</span></code> of the module <a class="reference external" href="https://mrf.readthedocs.io/en/latest/autodocs/MRF.html#module-MRF.Training_parameters">Training_parameters</a>.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">dimension_projection</span></code></div>
+<div class="line"><strong>Int</strong></div>
+<div class="line">Dimension of the subspace on which the projection will be performed.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">namepca</span></code></div>
+<div class="line"><strong>str</strong></div>
+<div class="line">Absolute path to the file containing the basis functions obtained with an online PCA algorithm in order to initalize or define the first linear layer supposed to perform the projection. This file needs to be a <code class="docutils literal notranslate"><span class="pre">.mat</span></code> file with the basis functions saved with the key word <code class="docutils literal notranslate"><span class="pre">basis</span></code>. The basis functions need to be saved with the size <code class="docutils literal notranslate"><span class="pre">(number</span> <span class="pre">of</span> <span class="pre">functions)</span> <span class="pre">x</span> <span class="pre">(length</span> <span class="pre">fingerprint)</span></code>.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">optimizer</span></code></div>
+<div class="line"><strong>String</strong></div>
+<div class="line">Name of the optimizer used for the training. The possible names to use are defined in the class <code class="docutils literal notranslate"><span class="pre">Optimizer</span></code> of the module <a class="reference external" href="https://mrf.readthedocs.io/en/latest/autodocs/MRF.html#module-MRF.Training_parameters">Training_parameters</a>.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">lr</span></code></div>
+<div class="line"><strong>Float</strong></div>
+<div class="line">Learning rate.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">noise_type</span></code></div>
+<div class="line"><strong>String</strong></div>
+<div class="line">Type of noise that you want to use. The different types of noise are defined in the module <a class="reference external" href="https://mrf.readthedocs.io/en/latest/autodocs/MRF.html#module-MRF.Training_parameters">Training_parameters</a>.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">noise_level</span></code></div>
+<div class="line"><strong>Float</strong></div>
+<div class="line">Level of noise that you want to use.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">batch_size</span></code></div>
+<div class="line"><strong>Int</strong></div>
+<div class="line">Batch size.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">nb_iterations</span></code></div>
+<div class="line"><strong>Int</strong></div>
+<div class="line">Number of iterations.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">nb_epochs</span></code></div>
+<div class="line"><strong>Int</strong></div>
+<div class="line">Number of epochs.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">complex</span></code></div>
+<div class="line"><strong>Bool</strong></div>
+<div class="line">Set to <code class="docutils literal notranslate"><span class="pre">True</span></code> if the input signals are complex valued.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">loss</span></code></div>
+<div class="line"><strong>Array of String</strong></div>
+<div class="line">Type of loss used. The array has a length 5 corresponding to the 5 parameters (<span class="math notranslate nohighlight">\(m_{0}^s\)</span>, <span class="math notranslate nohighlight">\(T_1^f\)</span>, <span class="math notranslate nohighlight">\(T_{2}^f\)</span>, <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(T_{2}^s\)</span>). The i-th element of this array gives the type of transformation applied to the parameter i. The different type of losses are defined in the class Loss in the module <a class="reference external" href="https://mrf.readthedocs.io/en/latest/autodocs/MRF.html#module-MRF.Training_parameters">Training_parameters</a>.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">params</span></code></div>
+<div class="line"><strong>Array of Int</strong></div>
+<div class="line">Define the parameters that you want to estimate. Number 0 corresponds to <span class="math notranslate nohighlight">\(m_0^s\)</span>, number 1 to <span class="math notranslate nohighlight">\(T_1^f\)</span>, etc. (The details are defined in the the module <a class="reference external" href="https://mrf.readthedocs.io/en/latest/autodocs/MRF.html#module-MRF.Training_parameters">Training_parameters</a> with the vectors <code class="docutils literal notranslate"><span class="pre">nametoparam</span></code> and <code class="docutils literal notranslate"><span class="pre">paramtoname</span></code>).</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">minpd</span></code></div>
+<div class="line"><strong>Float</strong></div>
+<div class="line">Minimum proton density.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">maxpd</span></code></div>
+<div class="line"><strong>Float</strong></div>
+<div class="line">Maximum proton density.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">save_name</span></code></div>
+<div class="line"><strong>String</strong></div>
+<div class="line">Name given to your training.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">validation</span></code></div>
+<div class="line"><strong>Bool</strong></div>
+<div class="line">Boolean which is True if you want to track validation loss and errors during the training.</div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">validation</span></code> is True :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* `validation_size`
+    **Int**
+    Number of fingerprints used for the validation dataset.
+</pre></div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">nb_files</span></code></div>
+<div class="line"><strong>String</strong></div>
+<div class="line">Number of files used for training and validation. I recall that your files needs to be saved in a folder with a name that you can choose and that should be located in <em>MRF/Offline/loading_data</em>.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">path_files</span></code></div>
+<div class="line"><strong>String</strong></div>
+<div class="line">Name that you gave to the folder located in <em>MRF/Offline/loading_data</em> which contains the files. Two different type of files should be saved in this folder:</div>
+</div>
+<ul class="simple">
+<li><p>the files <em>fingerprints1.npy</em>, <em>fingerprints2.npy</em>, … Each file contains an array of size n x (length fingerprint) where n is an integer that should be greater than the batch size chosen. <strong>Each fingerprint should be computed considering that the proton density is equal to 1</strong>.</p></li>
+<li><p>the files <em>params1.npy</em>, <em>params2.npy</em>, … Each file contains an array of size <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">x</span> <span class="pre">(length</span> <span class="pre">fingerprint)</span></code> and gives the parameters used to compute the fingerprints saved in the files <em>fingerprints1.npy</em>, <em>fingerprints2.npy</em>, …</p></li>
+<li><p><strong>If your loss requires the knowledge of the Cramer Rao Bound</strong>, you also need to save n this folder the files <em>CRBs1.npy</em>, <em>CRBs2.npy</em>, … Each file contains an array of size <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">x</span> <span class="pre">6</span></code> and gives the Cramer Rao Bounds for the parameters <span class="math notranslate nohighlight">\(m_{0}^s\)</span>, <span class="math notranslate nohighlight">\(T_1^f\)</span>, <span class="math notranslate nohighlight">\(T_{2}^f\)</span>, <span class="math notranslate nohighlight">\(R\)</span>, <span class="math notranslate nohighlight">\(T_{2}^s\)</span> and <span class="math notranslate nohighlight">\(M_0\)</span> <strong>in this order</strong>.</p></li>
+</ul>
+</li>
+</ul>
+<p>If <code class="docutils literal notranslate"><span class="pre">validation</span></code> is True :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">small_validation_size</span></code>
+<strong>Int</strong>
+Number of fingerprints used for the smaller validation dataset.</p></li>
+</ul>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="data-generation.html" title="previous page">Data Generation</a>
+    <a class='right-next' id="next-link" href="training.html" title="next page">Training</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Q.Duchemin, X.Zhang and K.Liu.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

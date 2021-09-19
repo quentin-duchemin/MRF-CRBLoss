@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualize the results &#8212; MRF-CRBLoss</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/typehints.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/override.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/sphinx_gallery.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Testing" href="testing.html" />
+    <link rel="prev" title="Training" href="training.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../presentation.html">
+  Presentation of the project
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../installation.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../documentation/index.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../developer/index.html">
+  Developer
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../team.html">
+  Team
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../references.html">
+  References
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../documentation/index.html">
+   Documentation
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   Tutorials
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="quickstart.html">
+     How to run the code ?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data-generation.html">
+     Data Generation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="settings.html">
+     Saving a settings file
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="training.html">
+     Training
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Visualize the results
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="testing.html">
+     Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="slice-paper.html">
+     Estimation of parameters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../developer/index.html">
+   Developer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../references.html">
+   References
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Requirements">
+   Requirements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Visualization-of-the-results">
+   Visualization of the results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Settings">
+   Settings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Loss">
+   Loss
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Relative-Errors">
+   Relative Errors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Absolute-Errors">
+   Absolute Errors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Absolute-Errors-Over-CRBs">
+   Absolute Errors Over CRBs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Gradients-wrt-loss">
+   Gradients wrt loss
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#Error">
+   Error
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="Visualize-the-results">
+<h1>Visualize the results<a class="headerlink" href="#Visualize-the-results" title="Permalink to this headline">¶</a></h1>
+<p>We explain here the way you can easily study the results of your experiments.</p>
+<p>We designed an interactive tool to study the basic properties of the trainings that you have done. To use this interactice interface, we only need to launch the notebook <code class="docutils literal notranslate"><span class="pre">offline_visualize_results.ipynb</span></code> located in the folder <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> at the root of the project. In this page, we provide a description of the different visualizations allowed by this tool.</p>
+<div class="section" id="Requirements">
+<h2>Requirements<a class="headerlink" href="#Requirements" title="Permalink to this headline">¶</a></h2>
+<p>In the root directory of the project, you need to have: - a folder named <em>settings_files_offline</em> containing the settings files used for the trainings . - a folder named <em>save_networks_offline</em> containing the torch dictionary automatically saved during the training.</p>
+<blockquote>
+<div><p>Note that these folders will be automatically generated if you follow the usual way to launch the code as explained <a class="reference external" href="https://mrf.readthedocs.io/en/latest/runcode.html">here</a>.</p>
+</div></blockquote>
+</div>
+<div class="section" id="Visualization-of-the-results">
+<h2>Visualization of the results<a class="headerlink" href="#Visualization-of-the-results" title="Permalink to this headline">¶</a></h2>
+<p>Launch the notebook <em>offline_visualize_resuts.ipynb</em> located in the folder <strong>notebooks</strong> with Jupyter. Running the cells, you will find an interactive tool allowing you to choose the network you want to study and the information you want to visualize.</p>
+<p>In the following, I list the visualizations that you can choose using this interactive tool. Some conditions can be asked to have access to some visualizations. In such cases, those conditions will be precised in a paragraph entitled <strong>Requirements</strong>.</p>
+</div>
+<div class="section" id="Settings">
+<h2>Settings<a class="headerlink" href="#Settings" title="Permalink to this headline">¶</a></h2>
+<p>Choosing this option, you will be able to see the details of the settings chosen for the training considered.</p>
+<p><img alt="Screen shot of the interactive tool to visualize the settings of the training." src="../../_images/settings.png" /></p>
+</div>
+<div class="section" id="Loss">
+<h2>Loss<a class="headerlink" href="#Loss" title="Permalink to this headline">¶</a></h2>
+<p>This option plots the evolution of the loss function along the epochs.</p>
+<p>If the parameter <code class="docutils literal notranslate"><span class="pre">validation</span></code> of the settings is <code class="docutils literal notranslate"><span class="pre">True</span></code>, you will see both the training and the validation loss. Otherwise, only the training loss will be visible.</p>
+<p><img alt="Screen shot of the interactive tool showing the loss along epochs." src="../../_images/loss.png" /></p>
+</div>
+<div class="section" id="Relative-Errors">
+<h2>Relative Errors<a class="headerlink" href="#Relative-Errors" title="Permalink to this headline">¶</a></h2>
+<p>Selecting the option Relative errors, figures presenting the evolution of the relative errors on the different parameters estimated along the epochs will be plotted.</p>
+<p>If the parameter <code class="docutils literal notranslate"><span class="pre">validation</span></code> of the settings is <code class="docutils literal notranslate"><span class="pre">True</span></code>, you will see both the training and the validation relative errors. Otherwise, only the training relative errors will be visible.</p>
+<p><img alt="Screen shot of the interactive tool to visualize the relative errors on the parameters." src="../../_images/relative-errors.png" /></p>
+</div>
+<div class="section" id="Absolute-Errors">
+<h2>Absolute Errors<a class="headerlink" href="#Absolute-Errors" title="Permalink to this headline">¶</a></h2>
+<p>Selecting the option Absolute errors, figures presenting the evolution of the absolute errors on the different parameters estimated along the epochs will be plotted.</p>
+<p>If the parameter <code class="docutils literal notranslate"><span class="pre">validation</span></code> of the settings is <code class="docutils literal notranslate"><span class="pre">True</span></code>, you will see both the training and the validation absolute errors. Otherwise, only the training absolute errors will be visible.</p>
+<p><img alt="Screen shot of the interactive tool to visualize the absolute errors on the parameters." src="../../_images/absolute-errors.png" /></p>
+</div>
+<div class="section" id="Absolute-Errors-Over-CRBs">
+<h2>Absolute Errors Over CRBs<a class="headerlink" href="#Absolute-Errors-Over-CRBs" title="Permalink to this headline">¶</a></h2>
+<p>Selecting the option Absolute errors over CRBs, figures presenting the evolution of the absolute errors divided by the square root of the CRBs on the different parameters estimated along the epochs will be plotted.</p>
+<p>If the parameter <code class="docutils literal notranslate"><span class="pre">validation</span></code> of the settings is <code class="docutils literal notranslate"><span class="pre">True</span></code>, you will see both the training and the validation absolute errors over the CRBs. Otherwise, only the training curves will be visible.</p>
+</div>
+<div class="section" id="Gradients-wrt-loss">
+<h2>Gradients wrt loss<a class="headerlink" href="#Gradients-wrt-loss" title="Permalink to this headline">¶</a></h2>
+<p>This option will plot the evolution of the average (on each epoch) of the norm of the gradients of the parameters of the network with respect to the training loss. This objective of this figure is to ensure you that your training behaves correctly. You should see that the average of the norm of the gradients is converging towards zero with the loss deacreasing.</p>
+<p><img alt="Screen shot of the interactive tool to visualize the decay of the gradient wrt to the loss." src="../../_images/gradientwrtloss.png" /></p>
+</div>
+<div class="section" id="Error">
+<h2>Error<a class="headerlink" href="#Error" title="Permalink to this headline">¶</a></h2>
+<p><strong>Requirement</strong>: This option is visible only if the parameter <code class="docutils literal notranslate"><span class="pre">validation</span></code> of the settings is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="training.html" title="previous page">Training</a>
+    <a class='right-next' id="next-link" href="testing.html" title="next page">Testing</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Q.Duchemin, X.Zhang and K.Liu.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

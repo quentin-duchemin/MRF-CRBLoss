@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentation of the project &#8212; MRF-CRBLoss</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/typehints.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/override.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/sphinx_gallery.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Documentation" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="index.html">
+  <img src="_static/logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  Presentation of the project
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="installation.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="documentation/index.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="tutorials/index.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="developer/index.html">
+  Developer
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="team.html">
+  Team
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="references.html">
+  References
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="documentation/index.html">
+   Documentation
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="tutorials/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorials/notebooks/quickstart.html">
+     How to run the code ?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorials/notebooks/data-generation.html">
+     Data Generation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorials/notebooks/settings.html">
+     Saving a settings file
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorials/notebooks/training.html">
+     Training
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorials/notebooks/visualize.html">
+     Visualize the results
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorials/notebooks/testing.html">
+     Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorials/notebooks/slice-paper.html">
+     Estimation of parameters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="developer/index.html">
+   Developer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="references.html">
+   References
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-magnetic-resonance-fingerprinting-mrf">
+   What is Magnetic Resonance Fingerprinting (MRF)?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-the-challenges-for-mrf">
+   What are the challenges for MRF?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-our-main-contributions">
+   What are our main contributions?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-high-dimensional-biological-method">
+     A high dimensional biological method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-new-loss-function">
+     A new loss function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-well-documented-and-maintainable-code">
+     A well documented and maintainable code
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="presentation-of-the-project">
+<h1>Presentation of the project<a class="headerlink" href="#presentation-of-the-project" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-magnetic-resonance-fingerprinting-mrf">
+<h2>What is Magnetic Resonance Fingerprinting (MRF)?<a class="headerlink" href="#what-is-magnetic-resonance-fingerprinting-mrf" title="Permalink to this headline">¶</a></h2>
+<p>By considering radio frequency pulses design in a pseudo-random fashion, MRF aims at triggering signal responses that are intrinsic to each tissue. As consequence, the signal response obtained from a specific voxel is called a <em>fingerprint</em>.</p>
+<p>While signals obtained from traditional MRI scans can usually by analyze to extract information on a single biophysical parameter, MRF allows to acquire signals that carry the tissue properties. As a result, MRF leads to a time saving regarding the scanning process and allows to obtain a quantitative information on the tissue properties, while scan analysis of traditional MRI techniques are qualitative.</p>
+</div>
+<div class="section" id="what-are-the-challenges-for-mrf">
+<h2>What are the challenges for MRF?<a class="headerlink" href="#what-are-the-challenges-for-mrf" title="Permalink to this headline">¶</a></h2>
+<p>The previous paragraph shed light on the disruptive advantages that MRF could provide over actual methods. Nevertheless, with MRF techniques arise new scientific difficulties that are feeding a large span of current research. The greatest challenge in MRF is to be able for a given <em>fingerprint</em> to efficiently obtain the corresponding tissue properties.</p>
+<p>First approaches to tackle this problem are based on a precomputed dictionary of fingerprints. Then, one could simply use template matching techiques to estimate the tissue’s biomarkers associated to a fingerprint. These methods can be computationally heavy and one way to improve their execution time is to use a low rank approximation of the dictionary (by computing its SVD) and to use compressed sensing techniques. Despite this effort, dictionary based methods cannot allow to solve the problem at stake since they are intrinsically limited by the curse of dimensionality.</p>
+<p>As a consequence, dictionary free approaches have been inquired and ones of the most promising are deep-learning methods.</p>
+</div>
+<div class="section" id="what-are-our-main-contributions">
+<h2>What are our main contributions?<a class="headerlink" href="#what-are-our-main-contributions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="a-high-dimensional-biological-method">
+<h3>A high dimensional biological method<a class="headerlink" href="#a-high-dimensional-biological-method" title="Permalink to this headline">¶</a></h3>
+<p>We use an 8-parameter magnetization transfer model <a class="reference internal" href="references.html"><span class="doc">Asslander19a</span></a>. It is based on Henkelman’s original two-pool spin model <a class="reference internal" href="references.html"><span class="doc">Henkelman93</span></a> that distinguishes between protons bound in water—the so-called free pool—and protons bound in macromolecules, such as proteins or lipids—the so-called semi-solid pool. The pulse sequence is designed such that the free pool remains in the hybrid state <a class="reference internal" href="references.html"><span class="doc">Asslander19a, Asslander19b</span></a>, —a spin ensemble state that provides a combination of robust and tractable spin dynamics with the ability to encode biophysical parameters with high signal-to-noise ratio (SNR) efficiency compared to steady-state MR experiments <a class="reference internal" href="references.html"><span class="doc">Asslander19b</span></a>.</p>
+</div>
+<div class="section" id="a-new-loss-function">
+<h3>A new loss function<a class="headerlink" href="#a-new-loss-function" title="Permalink to this headline">¶</a></h3>
+<p>Our main contribution lies in the definition of a new loss function. While most of existing works use the Mean Squared Error (MSE) as loss function, we propose to normalize each squared difference by the corresponding Cramer Rao Bound. This loss has the advantage of automatically scaling the contribution of each sample in a batch according to the difficulty to estimate the biomarker in the region of interest in the parameter space. More precisely, parameter hard-to-estimate will see their contribution decreased in the overall gradient computation, avoiding to see the loss domines by such hard-to-estimate samples. Further, our CRBbased loss function gives an absolute metric to measure the performance of the trained network. Indeed, considering that the network is unbiased, the overall loss function is theoretically ensured to be larger than one. The closer the loss is to one, the closer the neural network is to a maximum efficiency unbiased estimator.</p>
+</div>
+<div class="section" id="a-well-documented-and-maintainable-code">
+<h3>A well documented and maintainable code<a class="headerlink" href="#a-well-documented-and-maintainable-code" title="Permalink to this headline">¶</a></h3>
+<p>With this <a class="reference internal" href="documentation/index.html"><span class="doc">documentation</span></a> and our <a class="reference internal" href="tutorials/index.html"><span class="doc">tutorials</span></a>, one can easily reproduce the results of our paper. Moreover, we put a lot of effort to make our code extensible and flexible. We give a detailed description of the structure of the code in order to allow reseachers to use our code for their own projects. We give some tips to extend our package <a class="reference internal" href="developer/index.html"><span class="doc">here</span></a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Documentation</a>
+    <a class='right-next' id="next-link" href="installation.html" title="next page">Installation</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Q.Duchemin, X.Zhang and K.Liu.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation &#8212; MRF-CRBLoss</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/typehints.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/override.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/sphinx_gallery.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Presentation of the project" href="presentation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="#">
+  <img src="_static/logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="presentation.html">
+  Presentation of the project
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="installation.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="documentation/index.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="tutorials/index.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="developer/index.html">
+  Developer
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="team.html">
+  Team
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="references.html">
+  References
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="documentation">
+<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">MRF-CRBLoss</span></code> is a package allowing to estimate biologigical parameters from data coming from MRF scans. This package allows you to</p>
+<ul class="simple">
+<li><p>Train your own neural network</p></li>
+<li><p>Study easily the training process with a interactive visualization tool</p></li>
+<li><p>Evaluate and visualize the performance of the network on testing data</p></li>
+<li><p>Estime the parameter on invivo data</p></li>
+</ul>
+<p>Last but not least, we put a lot of effort to make our code maintainable, namely</p>
+<ul class="simple">
+<li><p>Extensible: You can easily <strong>add</strong> new behaviors.</p></li>
+<li><p>Flexible: You can easily <strong>modify</strong> existing behaviors.</p></li>
+</ul>
+<p>If you find a model useful for your research, please consider citing our publication.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 d-flex">
+            <div class="card text-center intro-card shadow">
+            <img src="_static/presentation.svg" class="card-img-top" alt="installation with scvi action icon" height="52">
+            <div class="card-body flex-fill">
+                <h5 class="card-title">Project Presentation</h5>
+                <p class="card-text">New to <em>Magnetic Resonance Fingerprinting</em>? Check out the project presentation.
+                </p><div class="custom-button docutils container">
+<p><a class="reference internal" href="presentation.html"><span class="doc">To the project presentation</span></a></p>
+</div>
+</div>
+</div>
+</div>
+
+     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 d-flex">
+            <div class="card text-center intro-card shadow">
+            <img src="_static/computer-24px.svg" class="card-img-top" alt="installation with scvi action icon" height="52">
+            <div class="card-body flex-fill">
+                <h5 class="card-title">Installation</h5>
+                <p class="card-text">New to <em>MRF-CRBLoss</em>? Check out the installation guide.
+                </p><div class="custom-button docutils container">
+<p><a class="reference internal" href="installation.html"><span class="doc">To the installation guide</span></a></p>
+</div>
+</div>
+</div>
+</div>
+
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 d-flex">
+            <div class="card text-center intro-card shadow">
+            <img src="_static/play_circle_outline-24px.svg" class="card-img-top" alt="installation with scvi action icon" height="52">
+            <div class="card-body flex-fill">
+                <h5 class="card-title">Tutorials</h5>
+                <p class="card-text">The tutorials provide information on how to use our code.
+                </p><div class="custom-button docutils container">
+<p><a class="reference internal" href="tutorials/index.html"><span class="doc">To the tutorials</span></a></p>
+</div>
+</div>
+</div>
+</div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 d-flex">
+            <div class="card text-center intro-card shadow">
+            <img src="_static/library_books-24px.svg" class="card-img-top" alt="installation with scvi action icon" height="52">
+            <div class="card-body flex-fill">
+                <h5 class="card-title">Documentation of the code</h5>
+                <p class="card-text">The documentation contains a detailed description of our code.
+                </p><div class="custom-button docutils container">
+<p><a class="reference internal" href="documentation/index.html"><span class="doc">To the documentation</span></a></p>
+</div>
+</br>
+</div>
+</div>
+</div>
+
+
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 d-flex">
+            <div class="card text-center intro-card shadow">
+            <img src="_static/code-24px.svg" class="card-img-top" alt="installation with scvi action icon" height="52">
+            <div class="card-body flex-fill">
+                <h5 class="card-title">Developer Guide</h5>
+                <p class="card-text">Want to add new features to the code ? The developer guide will help you to reach your goals.
+                </p><div class="custom-button docutils container">
+<p><a class="reference internal" href="developer/index.html"><span class="doc">To the developer guide</span></a></p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 d-flex">
+            <div class="card text-center intro-card shadow">
+            <img src="_static/team.svg" class="card-img-top" alt="installation with scvi action icon" height="52">
+            <div class="card-body flex-fill">
+                <h5 class="card-title">Team</h5>
+                <p class="card-text">Looking for contact information or just eager to know us?
+                </p><div class="custom-button docutils container">
+<p><a class="reference internal" href="team.html"><span class="doc">To the team presentation</span></a></p>
+</div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div><div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='right-next' id="next-link" href="presentation.html" title="next page">Presentation of the project</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Q.Duchemin, X.Zhang and K.Liu.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

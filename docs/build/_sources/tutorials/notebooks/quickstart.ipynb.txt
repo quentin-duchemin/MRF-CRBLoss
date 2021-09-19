@@ -1,0 +1,86 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "How to run the code ?\n",
+    "=====================\n",
+    "\n",
+    "This note explains in a nutshell how to install the requirements for this project, and then how to use the code to run simulations.\n",
+    "\n",
+    "\n",
+    "Required modules\n",
+    "--------------------------\n",
+    "\n",
+    "*First*, install the requirements:\n",
+    "```bash\n",
+    "pip install -r requirements_MRF.txt\n",
+    "```\n",
+    "\n",
+    "Running your own experiments\n",
+    "---------------------------------------------\n",
+    "\n",
+    "* **STEP 0:** Import the files containing the fingerprints\n",
+    "\n",
+    "\tWe need first to import the files containing the data and to save them in the folder *MRF/Offline/loading_data/chosen_name* where *chosen_name* is the name chosen to describe this particular dataset. You should save several files containing the data (typically, I saved around 400 different files each one containing 4096 fingerprints). We need to save different types of files:\n",
+    "\n",
+    "\t- Files named `fingerprints1.npy`,  `fingerprints2.npy`, etc. Each one of this file should contain a numpy array of size ``(number of fingerprints chosen) x (length of a fingerprint)``. Each fingerprint should be computed solving the Bloch equation for a **proton density equals to 1**.\n",
+    "\n",
+    "\t- Files named `params1.npy`,  `params2.npy`, etc. Each one of this file should contain a numpy array of size ``(number of fingerprints chosen) x (5)``. Each line should contain the parameters $m_{0}^s$, $T_1^f$, $T_2^f$, $R$ and $T_{2}^s$ in this order.\n",
+    "\n",
+    "\t- **If** your loss function required the definition of the Cramer Rao Bound, you should also save files `CRBs1.npy`,  `CRBs2.npy`, etc. Each one of this file should contain a numpy array of size ```(number of fingerprints chosen) x (6)```. Each line should contain the CRBS for the parameters $m_{0}^s$, $T_1^f$, $T_2^f$, $R$, $T_{2}^s$ and $M_0$ **in this order** and considering a **proton density equals to 1**.\n",
+    "\n",
+    "\t*Remark:* You could be disturbed by the fact that the CRBs and the fingerprints are saved with proton densities equal to 1. This is normal since at each epoch, new proton densities are sampled to change the scale of the loaded fingerprints. The CRBs loaded are also modified to take into account the proton densities sampled.\n",
+    "\n",
+    "\n",
+    "* **STEP 1:** Compute a reduced basis for the manifold of the Bloch equation using an online PCA algorithm (optional: basis already computed for you)\n",
+    "\n",
+    "\t**If you use a fixed first linear layer** supposed to perform the projection of the input onto a lower dimensional subspace, you should take a look at the script `online_PCA.py` located in the folder `online_PCA.py`. This script will compute a reduced basis supposed to approximate the whole manifold of the solutions of the Bloch equation. Note that you need to specify in the code the script allowing to generate the fingerprints from a given set of parameters. The specific line that needs to be modified is explicitly given in the function `generate_random_signal`. The most updated version of the code we used to generate fingerprints is located [here](https://github.com/JakobAsslaender/MRIgeneralizedBloch.jl). Please note that in the folder `paper_data`, we provide with the file `basis_for_compress.mat` the basis functions we used for our paper.\n",
+    "\n",
+    "* **STEP 2:** Define the desired settings for the training\n",
+    "\n",
+    "\tOpen the notebook *offline_training_settings.ipynb* to save easily a pickle file containing all the settings you want. In particular you will be asked to specify a **name** for this settings file. You will use this name to launch your job in the next step.\n",
+    "\n",
+    "\n",
+    "* **STEP 3:** Launch your job \n",
+    "\n",
+    "\t- On your laptop\n",
+    "\n",
+    "\t```bash\n",
+    "\tpython main_offline.py --save_name **chosen_name**\n",
+    "\t```\n",
+    "\n",
+    "\n",
+    "\t- On a remote cluster\n",
+    "\n",
+    "\tHere I give an example of the command line I used to launch my jobs on a remote cluster. I used one GPU to perform the training. \n",
+    "\t \n",
+    "\t```bash\n",
+    "\tsrun -t160:00:00 --gres=gpu:1 --mem=100GB --jobname=**chosen_name** python main_offline.py --save_name **chosen_name**\n",
+    "\t```"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
