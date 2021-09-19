@@ -1,0 +1,15 @@
+numpy
+ipywidgets
+torch
+matplotlib
+subprocess.run
+seaborn
+scipy
+copy
+importlib
+pandas
+random
+time
+sys
+sphinx-rtd-theme
+m2r
