@@ -5,3 +5,22 @@ This repository contains the *MRF-CRBLoss* package which allows to estimate biol
 In our paper, we prove that our approach allows to improve estimation results. As a by product, this new loss function provides an absolute metric to quantify the performance of the network.
 
 In the documentation of this package (https://quentin-duchemin.github.io/MRF-CRBLoss/), we provide all ingredients allowing to reproduce the experiments of our paper. Moreover, we describe in details our procedure allowing reseachers to fork our work to use or extend our code for their own applications.
+
+
+
+# Reference
+
+If you used MRF-CRBLoss in your research, please consider citing
+
+```
+@article{Zhang2021mrf-crbloss,
+	author = {Zhang, Xiaoxia and Duchemin, Quentin and Liu, Kaning and Flassbeck, Sebastian and Gultekin, Cem and Fernadez-Granda, Carlos and Asslander, Jakob},
+	title = {scvi-tools: a library for deep probabilistic analysis of single-cell omics data},
+	year = {2021},
+	doi = {},
+	publisher = {},
+	URL = {},
+	eprint = {},
+	journal = {}
+}
+```
