@@ -15,7 +15,7 @@ If you used MRF-CRBLoss in your research, please consider citing
 ```
 @article{Zhang2021mrf-crbloss,
 	author = {Zhang, Xiaoxia and Duchemin, Quentin and Liu, Kaning and Flassbeck, Sebastian and Gultekin, Cem and Fernadez-Granda, Carlos and Asslander, Jakob},
-	title = {scvi-tools: a library for deep probabilistic analysis of single-cell omics data},
+	title = {Cramér-Rao bound-informed training of neural networks for quantitative MRI},
 	year = {2021},
 	doi = {},
 	publisher = {},
