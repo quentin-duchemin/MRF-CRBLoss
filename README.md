@@ -13,14 +13,12 @@ In the documentation of this package (https://quentin-duchemin.github.io/MRF-CRB
 If you used MRF-CRBLoss in your research, please consider citing
 
 ```
-@article{Zhang2021mrf-crbloss,
-	author = {Zhang, Xiaoxia and Duchemin, Quentin and Liu, Kaning and Flassbeck, Sebastian and Gultekin, Cem and Fernadez-Granda, Carlos and Asslander, Jakob},
-	title = {Cramér-Rao bound-informed training of neural networks for quantitative MRI},
-	year = {2021},
-	doi = {},
-	publisher = {},
-	URL = {},
-	eprint = {},
-	journal = {}
+@misc{zhang2021cramerrao,
+      title={Cram\'er-Rao bound-informed training of neural networks for quantitative MRI}, 
+      author={Xiaoxia Zhang and Quentin Duchemin and Kangning Liu and Sebastian Flassbeck and Cem Gultekin and Carlos Fernandez-Granda and Jakob Assländer},
+      year={2021},
+      eprint={2109.10535},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
 }
 ```
