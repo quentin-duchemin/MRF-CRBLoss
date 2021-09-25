@@ -1,0 +1,1420 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing on invivo data &#8212; MRF-CRBLoss</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/typehints.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/override.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/sphinx_gallery.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../../index.html">
+  <img src="../../../../_static/logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../presentation.html">
+  Presentation of the project
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../installation.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../documentation/index.html">
+  Documentation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../index.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../developer/index.html">
+  Developer
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../team.html">
+  Team
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../../references.html">
+  References
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#1)-Function-to-compute-estimations-and-to-show-results">
+   1) Function to compute estimations and to show results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#2)-Showing-settings-of-the-trained-networks">
+   2) Showing settings of the trained networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#3)-Visualizing-results">
+   3) Visualizing results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#4)-Other-examples-of-results-on-different-slices-and/or-different-networks">
+   4) Other examples of results on different slices and/or different networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#different-check">
+   different check
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="Testing-on-invivo-data">
+<h1>Testing on invivo data<a class="headerlink" href="#Testing-on-invivo-data" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">join</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sc</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">depth</span> <span class="o">=</span> <span class="s1">&#39;../&#39;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">depth</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">MRF.Training_parameters</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">MRF.BaseModel</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">MRF.Projection</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">MRF.models</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">MRF.result_analysis_common</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">MRF</span>
+<span class="kn">from</span> <span class="nn">MRF.Offline</span> <span class="kn">import</span> <span class="n">Network</span><span class="p">,</span> <span class="n">Data_class</span><span class="p">,</span> <span class="n">Performances</span>
+<span class="n">clear_output</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="n">PD</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">loadmat</span>
+<span class="n">root</span> <span class="o">=</span> <span class="mi">6</span><span class="o">*</span><span class="n">depth</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="1)-Function-to-compute-estimations-and-to-show-results">
+<h2>1) Function to compute estimations and to show results<a class="headerlink" href="#1)-Function-to-compute-estimations-and-to-show-results" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">disp_settings</span><span class="p">(</span><span class="n">model_name</span><span class="p">):</span>
+    <span class="n">fullname</span><span class="o">=</span><span class="n">root</span><span class="o">+</span><span class="s1">&#39;settings_files_offline/settings_&#39;</span><span class="o">+</span><span class="n">model_name</span><span class="o">+</span><span class="s1">&#39;.pkl&#39;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fullname</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">sett</span><span class="o">=</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">sett</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[1m&#39;</span><span class="o">+</span><span class="n">key</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0m&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1">## invivo estimation</span>
+<span class="k">def</span> <span class="nf">invivo_parameter_estimation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">model_name</span><span class="p">,</span> <span class="n">fingerprints</span><span class="p">):</span>
+    <span class="n">parametersm0s</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">parameterst1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">parameterst2</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">root</span><span class="o">+</span><span class="s1">&#39;settings_files_offline/settings_&#39;</span> <span class="o">+</span> <span class="n">model_name</span> <span class="o">+</span> <span class="s1">&#39;.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">settings</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;namepca&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">root</span><span class="o">+</span><span class="s1">&#39;paper_data/basis_for_compress.mat&#39;</span>
+        <span class="n">net</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="o">+</span><span class="s1">&#39;save_networks_offline&#39;</span><span class="p">,</span> <span class="s1">&#39;network_&#39;</span> <span class="o">+</span> <span class="n">model_name</span><span class="p">),</span> <span class="n">map_location</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+        <span class="n">training_parameters</span> <span class="o">=</span> <span class="n">Training_parameters</span><span class="p">(</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;nb_epochs&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">],</span>
+                                                  <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;normalization&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;complex&#39;</span><span class="p">])</span>
+        <span class="n">projection</span> <span class="o">=</span> <span class="n">Projection</span><span class="p">(</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;start_by_projection&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;dimension_projection&#39;</span><span class="p">],</span>
+                                <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;initialization&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;normalization&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;namepca&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;complex&#39;</span><span class="p">])</span>
+        <span class="n">data_class</span> <span class="o">=</span> <span class="n">Data_class</span><span class="p">(</span><span class="n">training_parameters</span><span class="p">,</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;noise_type&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;noise_level&#39;</span><span class="p">],</span>
+                                <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;minPD&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;maxPD&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;nb_files&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;path_files&#39;</span><span class="p">])</span>
+        <span class="n">validation_settings</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;validation&#39;</span><span class="p">],</span>
+                               <span class="s1">&#39;small_validation_size&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;small_validation_size&#39;</span><span class="p">],</span>
+                               <span class="s1">&#39;validation_size&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;validation_size&#39;</span><span class="p">]}</span>
+        <span class="n">netw</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">,</span> <span class="n">nb_params</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]))</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+        <span class="n">netw</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">net</span><span class="p">[</span><span class="s1">&#39;NN&#39;</span><span class="p">])</span>
+        <span class="n">netw</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="n">netw</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">fingerprints_tmpt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">fingerprints</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">prms</span> <span class="o">=</span> <span class="n">netw</span><span class="p">(</span><span class="n">fingerprints_tmpt</span><span class="p">)</span>
+        <span class="n">prms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">prms</span><span class="o">.</span><span class="n">cpu</span><span class="p">())</span>
+        <span class="n">pars</span> <span class="o">=</span> <span class="n">prms</span>
+        <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">para</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">][</span><span class="n">para</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;MSE-Log&#39;</span><span class="p">:</span>
+                <span class="n">pars</span><span class="p">[:,</span> <span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">pars</span><span class="p">[:,</span> <span class="n">ii</span><span class="p">]</span>
+        <span class="n">parametersm0s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pars</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]))</span>
+        <span class="n">parameterst1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pars</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]))</span>
+        <span class="n">parameterst2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pars</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]))</span>
+
+    <span class="n">parametersm0s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">parametersm0s</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">mrfshape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mrfshape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">parameterst1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">parameterst1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">mrfshape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mrfshape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">parameterst2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">parameterst2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">mrfshape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mrfshape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">invivo_estimation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">parametersm0s</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">parameterst1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                            <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">parameterst2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">invivo_estimation</span>
+
+<span class="k">def</span> <span class="nf">invivo_parameter_estimation_epochloop</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_name1</span><span class="p">,</span><span class="n">model_name</span><span class="p">,</span> <span class="n">fingerprints</span><span class="p">):</span>
+    <span class="n">parametersm0s</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">parameterst1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">parameterst2</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">root</span><span class="o">+</span><span class="s1">&#39;settings_files_offline/settings_&#39;</span> <span class="o">+</span> <span class="n">model_name1</span> <span class="o">+</span> <span class="s1">&#39;.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">settings</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">net</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="o">+</span><span class="s1">&#39;save_networks_offline&#39;</span><span class="p">,</span> <span class="s1">&#39;network_&#39;</span> <span class="o">+</span> <span class="n">model_name</span><span class="p">),</span> <span class="n">map_location</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+        <span class="n">training_parameters</span> <span class="o">=</span> <span class="n">Training_parameters</span><span class="p">(</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;nb_epochs&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">],</span>
+                                                  <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;normalization&#39;</span><span class="p">])</span>
+        <span class="n">projection</span> <span class="o">=</span> <span class="n">Projection</span><span class="p">(</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;start_by_projection&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;dimension_projection&#39;</span><span class="p">],</span>
+                                <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;initialization&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;normalization&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;namepca&#39;</span><span class="p">])</span>
+        <span class="n">data_class</span> <span class="o">=</span> <span class="n">Data_class</span><span class="p">(</span><span class="n">training_parameters</span><span class="p">,</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;noise_type&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;noise_level&#39;</span><span class="p">],</span>
+                                <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;minPD&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;maxPD&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;nb_files&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;path_files&#39;</span><span class="p">])</span>
+        <span class="n">validation_settings</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;validation&#39;</span><span class="p">],</span>
+                               <span class="s1">&#39;small_validation_size&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;small_validation_size&#39;</span><span class="p">],</span>
+                               <span class="s1">&#39;validation_size&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;validation_size&#39;</span><span class="p">]}</span>
+        <span class="n">netw</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">,</span> <span class="n">nb_params</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]))</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+        <span class="n">netw</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">net</span><span class="p">[</span><span class="s1">&#39;NN&#39;</span><span class="p">])</span>
+        <span class="n">netw</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="n">netw</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">fingerprints_tmpt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">fingerprints</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="n">prms</span> <span class="o">=</span> <span class="n">netw</span><span class="p">(</span><span class="n">fingerprints_tmpt</span><span class="p">)</span>
+        <span class="n">prms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">prms</span><span class="o">.</span><span class="n">cpu</span><span class="p">())</span>
+        <span class="n">pars</span> <span class="o">=</span> <span class="n">prms</span>
+        <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">para</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">][</span><span class="n">para</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;MSE-Log&#39;</span><span class="p">:</span>
+                <span class="n">pars</span><span class="p">[:,</span> <span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">pars</span><span class="p">[:,</span> <span class="n">ii</span><span class="p">]</span>
+        <span class="n">parametersm0s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pars</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]))</span>
+        <span class="n">parameterst1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pars</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]))</span>
+        <span class="n">parameterst2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pars</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]))</span>
+
+    <span class="n">parametersm0s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">parametersm0s</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">mrfshape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mrfshape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">parameterst1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">parameterst1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">mrfshape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mrfshape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">parameterst2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">parameterst2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">mrfshape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mrfshape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">invivo_estimation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">parametersm0s</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">parameterst1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                            <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">parameterst2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">invivo_estimation</span>
+
+<span class="k">def</span> <span class="nf">plot_invivo_slice</span><span class="p">(</span><span class="n">invivo_estimation</span><span class="p">,</span><span class="n">model_title</span><span class="p">,</span><span class="n">clorname</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">):</span>
+    <span class="n">fsize</span><span class="o">=</span><span class="mi">12</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+    <span class="n">ax1</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">invivo_estimation</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">clorname</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;m0s&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Reg7e-06&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fsize</span><span class="p">)</span>
+
+    <span class="n">ax1</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">invivo_estimation</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">clorname</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;T1&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="n">ax1</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">invivo_estimation</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">clorname</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.11</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;T2f&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">model_title</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot_invivo_2_slice_comparison</span><span class="p">(</span><span class="n">data_all</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">clorname</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">):</span>
+    <span class="n">rwo</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">fsize</span> <span class="o">=</span> <span class="mi">12</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data_all</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">rwo</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">clorname</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;m0s&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Reg7e-06&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fsize</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">rwo</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">clorname</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">rwo</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">clorname</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.11</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;T2f&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">model_name</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="c1">###########</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data_all</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">rwo</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">clorname</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;m0s&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Reg7e-06&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fsize</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">rwo</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">clorname</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">rwo</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">clorname</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.11</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;T2f&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">model_name</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="2)-Showing-settings-of-the-trained-networks">
+<h2>2) Showing settings of the trained networks<a class="headerlink" href="#2)-Showing-settings-of-the-trained-networks" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;CRB-paper&#39;</span>
+<span class="n">disp_settings</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-bold">optimizer</span>
+Adam
+
+
+<span class="ansi-bold">lr</span>
+0.01
+
+
+<span class="ansi-bold">model</span>
+CRB-paper
+
+
+<span class="ansi-bold">noise_type</span>
+Standard
+
+
+<span class="ansi-bold">noise_level</span>
+0.01
+
+
+<span class="ansi-bold">normalization</span>
+After_projection
+
+
+<span class="ansi-bold">namepca</span>
+/gpfs/data/asslaenderlab/20200917_InVivo_MT_1mm_MWI_1p7mm/20201021_nonSweeping_Recos_n_Fits_Symmetric_Basis/basis_v3.2_sweep_0_std_B0_pio2_symmetric_B1_0.9pm0.2.mat
+
+
+<span class="ansi-bold">loss</span>
+[&#39;MSE-CRB&#39;, &#39;MSE-CRB&#39;, &#39;MSE-CRB&#39;, &#39;MSE-CRB&#39;, &#39;MSE-CRB&#39;, &#39;MSE&#39;, &#39;MSE&#39;, &#39;MSE&#39;]
+
+
+<span class="ansi-bold">batch_size</span>
+1024
+
+
+<span class="ansi-bold">start_by_projection</span>
+True
+
+
+<span class="ansi-bold">nb_epochs</span>
+800
+
+
+<span class="ansi-bold">params</span>
+[0, 1, 2]
+
+
+<span class="ansi-bold">initialization</span>
+Fixlayer
+
+
+<span class="ansi-bold">validation_size</span>
+56320
+
+
+<span class="ansi-bold">validation</span>
+True
+
+
+<span class="ansi-bold">small_validation_size</span>
+10240
+
+
+<span class="ansi-bold">minPD</span>
+0.1
+
+
+<span class="ansi-bold">maxPD</span>
+1.0
+
+
+<span class="ansi-bold">save_name</span>
+CRB-paper
+
+
+<span class="ansi-bold">nb_files</span>
+1000
+
+
+<span class="ansi-bold">path_files</span>
+v3_uniform_b1cutoff_B0B1vary_R13_complex
+
+
+<span class="ansi-bold">dimension_projection</span>
+13
+
+
+<span class="ansi-bold">name_model</span>
+CRB-paper
+
+
+<span class="ansi-bold">complex</span>
+True
+
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="3)-Visualizing-results">
+<h2>3) Visualizing results<a class="headerlink" href="#3)-Visualizing-results" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#select a slice to test</span>
+<span class="n">invivo_fingerprints</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">root</span><span class="o">+</span><span class="s1">&#39;paper_data/invivo_test_slice.mat&#39;</span><span class="p">)[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+<span class="n">mrfshape</span> <span class="o">=</span> <span class="n">invivo_fingerprints</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">invivo_fingerprints</span> <span class="o">=</span> <span class="n">invivo_fingerprints</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">mrfshape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">mrfshape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<span class="n">invivo_fingerprints</span> <span class="o">=</span> <span class="n">invivo_fingerprints</span><span class="o">.</span><span class="n">T</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;MRF.models.CRB-paper&#39;</span><span class="p">)</span>
+<span class="n">model_name_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CRB-paper&#39;</span><span class="p">]</span>
+<span class="n">model_title_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CRB-paper&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model_name_list</span><span class="p">)):</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="n">model_name_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">invivo_result_slice</span> <span class="o">=</span><span class="n">invivo_parameter_estimation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">model_name</span><span class="p">,</span> <span class="n">invivo_fingerprints</span><span class="p">)</span>
+    <span class="n">plot_invivo_slice</span><span class="p">(</span><span class="n">invivo_result_slice</span><span class="p">,</span><span class="n">model_title_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Fixlayer
+torch.Size([37625, 26])
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_7_1.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_7_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="4)-Other-examples-of-results-on-different-slices-and/or-different-networks">
+<h2>4) Other examples of results on different slices and/or different networks<a class="headerlink" href="#4)-Other-examples-of-results-on-different-slices-and/or-different-networks" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Here, we use the function `plot_invivo_2_slice_comparison` to compare the results</span>
+<span class="c1"># on invivo data for the network trained with the CRB loss and a network trained</span>
+<span class="c1"># with the usual MSE loss.</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_9_0.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_9_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_9_1.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_9_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">########################################### MSE/CRB invivo lr=0.01####################################################</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;MRF.models.full_joint_deep3_blochsimv3p2_complexproj_0817_noprojection&#39;</span><span class="p">)</span>
+
+<span class="c1">########## MSE/CRB invivo lr=0.001 #################</span>
+<span class="n">model_name</span> <span class="o">=</span><span class="s1">&#39;d0324_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001&#39;</span>
+<span class="n">invivo_result_slice</span> <span class="o">=</span><span class="n">invivo_parameter_estimation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">model_name</span><span class="p">,</span> <span class="n">invivo_fingerprints</span><span class="p">)</span>
+<span class="n">plot_invivo_slice</span><span class="p">(</span><span class="n">invivo_result_slice</span><span class="p">,</span><span class="s1">&#39;CRB&#39;</span><span class="p">)</span>
+
+<span class="c1">########## MSE invivo lr=0.001 #####################</span>
+<span class="n">model_name</span> <span class="o">=</span><span class="s1">&#39;d0324_MSE_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3&#39;</span>
+<span class="n">invivo_result_slice</span> <span class="o">=</span><span class="n">invivo_parameter_estimation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">model_name</span><span class="p">,</span> <span class="n">invivo_fingerprints</span><span class="p">)</span>
+<span class="n">plot_invivo_slice</span><span class="p">(</span><span class="n">invivo_result_slice</span><span class="p">,</span><span class="s1">&#39;MSE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_11_0.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_11_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_11_1.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_11_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="different-check">
+<h2>different check<a class="headerlink" href="#different-check" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">invivo_parameter_estimation_check</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">model_name</span><span class="p">,</span> <span class="n">fingerprints</span><span class="p">):</span>
+    <span class="n">parametersm0s</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">parameterst1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">parameterst2</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../settings_files_offline/settings_&#39;</span> <span class="o">+</span> <span class="n">model_name</span><span class="p">[</span><span class="mi">8</span><span class="p">:]</span> <span class="o">+</span> <span class="s1">&#39;.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">settings</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">net</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;../save_networks_offline&#39;</span><span class="p">,</span> <span class="n">model_name</span><span class="p">),</span> <span class="n">map_location</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+        <span class="n">training_parameters</span> <span class="o">=</span> <span class="n">Training_parameters</span><span class="p">(</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;nb_epochs&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">],</span>
+                                                  <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;normalization&#39;</span><span class="p">])</span>
+        <span class="n">projection</span> <span class="o">=</span> <span class="n">Projection</span><span class="p">(</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;start_by_projection&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;dimension_projection&#39;</span><span class="p">],</span>
+                                <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;initialization&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;normalization&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;namepca&#39;</span><span class="p">])</span>
+        <span class="n">projection</span><span class="o">.</span><span class="n">initialization</span> <span class="o">=</span> <span class="s1">&#39;Fixlayer&#39;</span>
+        <span class="n">projection</span><span class="o">.</span><span class="n">normalization</span> <span class="o">=</span> <span class="s1">&#39;After_projection&#39;</span>
+        <span class="n">data_class</span> <span class="o">=</span> <span class="n">Data_class</span><span class="p">(</span><span class="n">training_parameters</span><span class="p">,</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;noise_type&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;noise_level&#39;</span><span class="p">],</span>
+                                <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;minPD&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;maxPD&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;nb_files&#39;</span><span class="p">],</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;path_files&#39;</span><span class="p">])</span>
+        <span class="n">validation_settings</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;validation&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;validation&#39;</span><span class="p">],</span>
+                               <span class="s1">&#39;small_validation_size&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;small_validation_size&#39;</span><span class="p">],</span>
+                               <span class="s1">&#39;validation_size&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;validation_size&#39;</span><span class="p">]}</span>
+        <span class="n">netw</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">,</span> <span class="n">nb_params</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]))</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+        <span class="n">netw</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">net</span><span class="p">[</span><span class="s1">&#39;NN&#39;</span><span class="p">])</span>
+        <span class="n">netw</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="n">netw</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">fingerprints_tmpt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">fingerprints</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="n">prms</span> <span class="o">=</span> <span class="n">netw</span><span class="p">(</span><span class="n">fingerprints_tmpt</span><span class="p">)</span>
+        <span class="n">prms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">prms</span><span class="o">.</span><span class="n">cpu</span><span class="p">())</span>
+        <span class="n">pars</span> <span class="o">=</span> <span class="n">prms</span>
+        <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">para</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">][</span><span class="n">para</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;MSE-Log&#39;</span><span class="p">:</span>
+                <span class="n">pars</span><span class="p">[:,</span> <span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">pars</span><span class="p">[:,</span> <span class="n">ii</span><span class="p">]</span>
+        <span class="n">parametersm0s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pars</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]))</span>
+        <span class="n">parameterst1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pars</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]))</span>
+        <span class="n">parameterst2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pars</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]))</span>
+
+    <span class="n">parametersm0s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">parametersm0s</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">mrfshape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mrfshape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">parameterst1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">parameterst1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">mrfshape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mrfshape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">parameterst2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">parameterst2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">mrfshape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mrfshape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">invivo_estimation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">parametersm0s</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">parameterst1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                            <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">parameterst2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">invivo_estimation</span>
+
+<span class="k">def</span> <span class="nf">plot_invivo_slice_check</span><span class="p">(</span><span class="n">invivo_estimation</span><span class="p">,</span><span class="n">model_title</span><span class="p">,</span><span class="n">clorname</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">):</span>
+    <span class="n">fsize</span><span class="o">=</span><span class="mi">12</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">ax1</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">invivo_estimation</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">clorname</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;m0s&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Reg7e-06&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fsize</span><span class="p">)</span>
+
+    <span class="n">ax1</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">invivo_estimation</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">clorname</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;T1&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="n">ax1</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">invivo_estimation</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">clorname</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.11</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;T2f&#39;</span> <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">model_title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">model</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;MRF.models.full_joint_deep3_blochsimv3p2_complexproj_0817_noprojection&#39;</span><span class="p">)</span>
+<span class="n">list1</span><span class="o">=</span><span class="p">[</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001_noise_0.0005&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001_noise_0.001&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001_noise0.005_1000file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001_noise0.005_500file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001_noise0.005_800file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001_noise0.005_PD1&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001_noise_0.01&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001_noise_0.1&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001_noise_free&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.005&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R20_p3_lr_0.001&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R20_p3_lr_0.005&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R20_p3_lr_0.01&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0428_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_PD1_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.00001_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.0001_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.003_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.005_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.008_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_500file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_600file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_800file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.02_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.04_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.06_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.08_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.1_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.15_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.2_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.5_1100file&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0511_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_1100file&#39;</span><span class="p">,</span>
+
+<span class="s1">&#39;network_d0520_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_550_1024&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0520_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_550_1024_256&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0520_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_550_1024_duringepoch&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0520_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_550_1024_duringepoch_largerval&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0520_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_590_1024_largerval_train&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0520_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_590_1024_largerval_train_after&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0526_MSE_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_1000_1024_larger_val_train_model&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0526_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_1000_1024_larger_val_train_model&#39;</span><span class="p">,</span>
+<span class="s1">&#39;network_d0526_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_1000_1024_smaller_val_train_model&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">list1_good1</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span><span class="mi">24</span><span class="p">]</span> <span class="c1">#3,4,,25,34,0,15,11,18,26，36,35],34</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_good1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">list1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001_noise0.005_1000file
+network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001_noise0.005_500file
+network_d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01
+network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.02_1100file
+network_d0429_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.04_1100file
+network_d0520_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_550_1024_256
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#select a slice to test</span>
+<span class="n">invivo_fingerprints</span><span class="o">=</span><span class="n">invivo_fingerprints_ori</span><span class="p">[:,</span><span class="mi">93</span><span class="p">,:,:]</span> <span class="c1">#26, 175, 210</span>
+<span class="n">mrfshape</span> <span class="o">=</span> <span class="n">invivo_fingerprints</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">invivo_fingerprints</span> <span class="o">=</span> <span class="n">invivo_fingerprints</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">mrfshape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">mrfshape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span> <span class="c1">#26, 36750</span>
+<span class="n">invivo_fingerprints</span> <span class="o">=</span> <span class="n">invivo_fingerprints</span><span class="o">.</span><span class="n">T</span> <span class="c1">#36750, 26</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list1_good1</span><span class="p">:</span>
+    <span class="n">model_name</span> <span class="o">=</span> <span class="n">list1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">invivo_result_slice</span> <span class="o">=</span><span class="n">invivo_parameter_estimation_check</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">model_name</span><span class="p">,</span> <span class="n">invivo_fingerprints</span><span class="p">)</span>
+    <span class="n">plot_invivo_slice_check</span><span class="p">(</span><span class="n">invivo_result_slice</span><span class="p">,</span><span class="s1">&#39;crb&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_17_0.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_17_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_17_1.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_17_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_17_2.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_17_2.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_17_3.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_17_3.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_17_4.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_17_4.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_17_5.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_17_5.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">model</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;MRF.models.full_joint_deep3_blochsimv3p2_complexproj_0817_noprojection&#39;</span><span class="p">)</span>
+
+<span class="n">model_name_base</span><span class="o">=</span><span class="s1">&#39;d0428_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.01_noise0.01_PD1_1100file&#39;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">400</span><span class="p">]:</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="n">model_name_base</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="n">invivo_result_slice</span> <span class="o">=</span><span class="n">invivo_parameter_estimation_epochloop</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">model_name_base</span><span class="p">,</span><span class="n">model_name</span><span class="p">,</span> <span class="n">invivo_fingerprints</span><span class="p">)</span>
+    <span class="n">plot_invivo_slice</span><span class="p">(</span><span class="n">invivo_result_slice</span><span class="p">,</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_24_0.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_24_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_24_1.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_24_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_24_2.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_24_2.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_24_3.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_24_3.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">model</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;MRF.models.full_joint_deep3_blochsimv3p2_complexproj_0817_noprojection&#39;</span><span class="p">)</span>
+
+<span class="n">model_name_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001_noise0.005_1000file&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001_noise_0.01&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;d0423_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001&#39;</span><span class="p">]</span>
+<span class="n">model_title_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1000file_noise0.005&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;590file_noise0.01&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;590file_noise0.005&#39;</span><span class="p">]</span>
+<span class="n">model_index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">model_index</span><span class="p">:</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="n">model_name_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">invivo_result_slice</span> <span class="o">=</span><span class="n">invivo_parameter_estimation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">model_name</span><span class="p">,</span> <span class="n">invivo_fingerprints</span><span class="p">)</span>
+    <span class="n">plot_invivo_slice</span><span class="p">(</span><span class="n">invivo_result_slice</span><span class="p">,</span><span class="n">model_title_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_25_0.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_25_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_25_1.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_25_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">model</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;MRF.models.full_joint_deep3_blochsimv3p2_complexproj_0817_noprojection&#39;</span><span class="p">)</span>
+
+<span class="n">model_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;d0324_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;d0324_MSE_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;d0324_MAE_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3&#39;</span><span class="p">]</span>
+<span class="n">model_index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">model_index</span><span class="p">:</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="n">model_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">invivo_result_slice</span> <span class="o">=</span><span class="n">invivo_parameter_estimation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">model_name</span><span class="p">,</span> <span class="n">invivo_fingerprints</span><span class="p">)</span>
+    <span class="n">plot_invivo_slice</span><span class="p">(</span><span class="n">invivo_result_slice</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_26_0.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_26_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_26_1.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_26_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">########################################### MSE/CRB invivo lr=0.01####################################################</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;MRF.models.full_joint_deep3_blochsimv3p2_complexproj_0817_noprojection&#39;</span><span class="p">)</span>
+
+<span class="c1">########## MSE/CRB invivo lr=0.001 #################</span>
+<span class="n">model_name</span> <span class="o">=</span><span class="s1">&#39;d0324_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001&#39;</span>
+<span class="n">invivo_result_slice</span> <span class="o">=</span><span class="n">invivo_parameter_estimation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">model_name</span><span class="p">,</span> <span class="n">invivo_fingerprints</span><span class="p">)</span>
+<span class="n">plot_invivo_slice</span><span class="p">(</span><span class="n">invivo_result_slice</span><span class="p">)</span>
+
+<span class="c1">########## MSE invivo lr=0.001 #####################</span>
+<span class="n">model_name</span> <span class="o">=</span><span class="s1">&#39;d0324_MSE_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3&#39;</span>
+<span class="n">invivo_result_slice</span> <span class="o">=</span><span class="n">invivo_parameter_estimation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">model_name</span><span class="p">,</span> <span class="n">invivo_fingerprints</span><span class="p">)</span>
+<span class="n">plot_invivo_slice</span><span class="p">(</span><span class="n">invivo_result_slice</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_27_0.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_27_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_27_1.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_27_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">model</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;MRF.models.full_joint_deep3_blochsimv3p2_complexproj_0817_noprojection&#39;</span><span class="p">)</span>
+
+
+<span class="n">model_name_compare</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;d0324_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3_lr_0.001&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;d0324_MSE_v3_nonsweep_varyB0B1_complex_nob1_blochsim_R13_p3&#39;</span><span class="p">]</span>
+
+<span class="c1">########## MSE/CRB invivo lr=0.001 #################</span>
+<span class="n">data1</span> <span class="o">=</span><span class="n">invivo_parameter_estimation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">model_name_compare</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">invivo_fingerprints</span><span class="p">)</span>
+
+<span class="c1">########## MSE invivo lr=0.001 #####################</span>
+<span class="n">data2</span> <span class="o">=</span><span class="n">invivo_parameter_estimation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">model_name_compare</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">invivo_fingerprints</span><span class="p">)</span>
+
+<span class="n">invivo</span><span class="o">=</span><span class="p">[</span><span class="n">data1</span><span class="p">,</span><span class="n">data2</span><span class="p">]</span>
+<span class="n">plot_invivo_2_slice_comparison</span><span class="p">(</span><span class="n">invivo</span><span class="p">,</span><span class="n">model_name_compare</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_28_0.png" src="../../../../_images/tutorials_notebooks_test_data_plot_TMI_paper_plot_testing_invivo_28_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+
+
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Q.Duchemin, X.Zhang and K.Liu.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
