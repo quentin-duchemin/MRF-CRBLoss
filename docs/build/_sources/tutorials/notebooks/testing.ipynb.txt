@@ -6,6 +6,15 @@
    "source": [
     "# Testing"
    ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## 1) Testing on pre-computed grids: [Click here](./test_data_plot_TMI_paper/plot/testing_grids.ipynb)\n",
+    "\n",
+    "## 2) Testing on invivo data: [Click here](./test_data_plot_TMI_paper/plot/testing_invivo.ipynb)"
+   ]
   }
  ],
  "metadata": {

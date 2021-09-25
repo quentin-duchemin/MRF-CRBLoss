@@ -59,8 +59,12 @@ class model(BaseModel):
 			else:
 				proj = self.fc1(s)
 		else:
-			proj = s # in invivo test, always set it to Fixlayer
-
+			if len(s.size())==3 and self.projection.complex:
+				s_real = s[:, :, 0]  # (batch, 1142)
+				s_imag = s[:, :, 1]  # (batch, 1142)
+				proj = torch.cat((s_real, s_imag), 1)  # in invivo test, always set it to Fixlayer
+			else:
+				proj = s  
 		if self.projection.normalization == "After_projection":
 			proj = self.normalization_post_projection_complex(proj)
 			
