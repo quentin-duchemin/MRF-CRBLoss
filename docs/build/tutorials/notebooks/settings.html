@@ -279,11 +279,11 @@
 </ul>
 <p>If the chosen model starts by a projection :</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">normalization</span></code> <strong>String</strong> Type of normalization of the data. The possible types of normalization that can be used are defined in the class <code class="docutils literal notranslate"><span class="pre">Normalization</span></code> of the module <a class="reference external" href="https://mrf.readthedocs.io/en/latest/autodocs/MRF.html#module-MRF.Training_parameters">Training_parameters</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">normalization</span></code> <strong>String</strong> Type of normalization of the data. The possible types of normalization that can be used are defined in the class <code class="docutils literal notranslate"><span class="pre">Normalization</span></code> of the module <a class="reference external" href="https://quentin-duchemin.github.io/MRF-CRBLoss/build/documentation/index.html">Training_parameters</a>.</p></li>
 <li><div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">initilization</span></code></div>
 <div class="line"><strong>String</strong></div>
-<div class="line">Type of initilization for the weights of the first linear layer which should perform the projection. The possible types of initialization that can be used are defined in the class <code class="docutils literal notranslate"><span class="pre">Initialization</span></code> of the module <a class="reference external" href="https://mrf.readthedocs.io/en/latest/autodocs/MRF.html#module-MRF.Training_parameters">Training_parameters</a>.</div>
+<div class="line">Type of initilization for the weights of the first linear layer which should perform the projection. The possible types of initialization that can be used are defined in the class <code class="docutils literal notranslate"><span class="pre">Initialization</span></code> of the module <a class="reference external" href="https://quentin-duchemin.github.io/MRF-CRBLoss/build/documentation/index.html">Training_parameters</a>.</div>
 </div>
 </li>
 <li><div class="line-block">
@@ -301,7 +301,7 @@
 <li><div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">optimizer</span></code></div>
 <div class="line"><strong>String</strong></div>
-<div class="line">Name of the optimizer used for the training. The possible names to use are defined in the class <code class="docutils literal notranslate"><span class="pre">Optimizer</span></code> of the module <a class="reference external" href="https://mrf.readthedocs.io/en/latest/autodocs/MRF.html#module-MRF.Training_parameters">Training_parameters</a>.</div>
+<div class="line">Name of the optimizer used for the training. The possible names to use are defined in the class <code class="docutils literal notranslate"><span class="pre">Optimizer</span></code> of the module <a class="reference external" href="https://quentin-duchemin.github.io/MRF-CRBLoss/build/documentation/index.html">Training_parameters</a>.</div>
 </div>
 </li>
 <li><div class="line-block">
@@ -313,7 +313,7 @@
 <li><div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">noise_type</span></code></div>
 <div class="line"><strong>String</strong></div>
-<div class="line">Type of noise that you want to use. The different types of noise are defined in the module <a class="reference external" href="https://mrf.readthedocs.io/en/latest/autodocs/MRF.html#module-MRF.Training_parameters">Training_parameters</a>.</div>
+<div class="line">Type of noise that you want to use. The different types of noise are defined in the module <a class="reference external" href="https://quentin-duchemin.github.io/MRF-CRBLoss/build/documentation/index.html">Training_parameters</a>.</div>
 </div>
 </li>
 <li><div class="line-block">
@@ -349,13 +349,13 @@
 <li><div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">loss</span></code></div>
 <div class="line"><strong>Array of String</strong></div>
-<div class="line">Type of loss used. The array has a length 5 corresponding to the 5 parameters (<span class="math notranslate nohighlight">\(m_{0}^s\)</span>, <span class="math notranslate nohighlight">\(T_1^f\)</span>, <span class="math notranslate nohighlight">\(T_{2}^f\)</span>, <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(T_{2}^s\)</span>). The i-th element of this array gives the type of transformation applied to the parameter i. The different type of losses are defined in the class Loss in the module <a class="reference external" href="https://mrf.readthedocs.io/en/latest/autodocs/MRF.html#module-MRF.Training_parameters">Training_parameters</a>.</div>
+<div class="line">Type of loss used. The array has a length 5 corresponding to the 5 parameters (<span class="math notranslate nohighlight">\(m_{0}^s\)</span>, <span class="math notranslate nohighlight">\(T_1^f\)</span>, <span class="math notranslate nohighlight">\(T_{2}^f\)</span>, <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(T_{2}^s\)</span>). The i-th element of this array gives the type of transformation applied to the parameter i. The different type of losses are defined in the class Loss in the module <a class="reference external" href="https://quentin-duchemin.github.io/MRF-CRBLoss/build/documentation/index.html">Training_parameters</a>.</div>
 </div>
 </li>
 <li><div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">params</span></code></div>
 <div class="line"><strong>Array of Int</strong></div>
-<div class="line">Define the parameters that you want to estimate. Number 0 corresponds to <span class="math notranslate nohighlight">\(m_0^s\)</span>, number 1 to <span class="math notranslate nohighlight">\(T_1^f\)</span>, etc. (The details are defined in the the module <a class="reference external" href="https://mrf.readthedocs.io/en/latest/autodocs/MRF.html#module-MRF.Training_parameters">Training_parameters</a> with the vectors <code class="docutils literal notranslate"><span class="pre">nametoparam</span></code> and <code class="docutils literal notranslate"><span class="pre">paramtoname</span></code>).</div>
+<div class="line">Define the parameters that you want to estimate. Number 0 corresponds to <span class="math notranslate nohighlight">\(m_0^s\)</span>, number 1 to <span class="math notranslate nohighlight">\(T_1^f\)</span>, etc. (The details are defined in the the module <a class="reference external" href="https://quentin-duchemin.github.io/MRF-CRBLoss/build/documentation/index.html">Training_parameters</a> with the vectors <code class="docutils literal notranslate"><span class="pre">nametoparam</span></code> and <code class="docutils literal notranslate"><span class="pre">paramtoname</span></code>).</div>
 </div>
 </li>
 <li><div class="line-block">

@@ -125,5 +125,5 @@ A new optimizer
 A new sampling strategy
 -----------------------
 
-You do not need to modify anything to project. You just need to built the files containing the fingerprints using the sampling strategy that you want ot use. Once you have saved a .txt file containing the urls of the files with the fingerprints, we can load them locally in this folder. Then you can launch your job following the method described [here](https://master_thesis.github.io/docs/build/html/runcode.html).
+You do not need to modify anything to project. You just need to built the files containing the fingerprints using the sampling strategy that you want ot use. Once you have saved a .txt file containing the urls of the files with the fingerprints, we can load them locally in this folder. Then you can launch your job following the method described `here <https://quentin-duchemin.github.io/MRF-CRBLoss/build/tutorials/notebooks/quickstart.html>`_.
 
